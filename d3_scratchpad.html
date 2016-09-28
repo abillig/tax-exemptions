@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>D3 : Animated Bar Chart</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+	<style type="text/css">
+		#idas_chart {
+			height: 400px;
+			width: 600px;
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<svg id="idas_chart"></svg>
+
+	<script type="text/javascript">
+	var data = [[2000, 11985077731],
+	[2001, 13766009963],
+	[2002, 16486313410],
+	[2003, 18095055960],
+	[2004, 18279655311],
+	[2005, 19557362643],
+	[2006, 21527137458],[2007, 25382696018],
+	[2008, 26202678258],[2009, 28011139725],
+	[2010, 30841638243],[2011, 31222930036],
+	[2012, 31840881902],[2013, 32576694333],
+	[2014, 32329198846],
+	[2015, 33791219220]]
+
+		// ,
+	  // 2002: 16486313410,
+	  // 2003: 18095055960,
+	  // 2004: 18279655311,
+	  // 2005: 19557362643,
+	  // 2006: 21527137458,
+	  // 2007: 25382696018,
+	  // 2008: 26202678258,
+	  // 2009: 28011139725,
+	  // 2010: 30841638243,
+	  // 2011: 31222930036,
+	  // 2012: 31840881902,
+	  // 2013: 32576694333,
+	  // 2014: 32329198846,
+	  // 2015: 33791219220}
+max = Object.keys(data).length
+
+			var height = 400;
+			var width = 600;
+			var barPadding = 2;
+			var barWidth = (width / max) - barPadding;
+
+			console.log(barWidth)
+
+			var yScale = d3.scale.linear()
+				.domain([d3.min(data[1]), d3.max(data[1])])
+				.range([0, height]);
+
+			var xScale = d3.scale.linear()
+				.domain([d3.min(data[0]), d3.max(data[0])])
+				.range([0, width]);
+
+			// var xScale = d3.scale.ordinal()
+			// 	.domain(data[0])
+			// 	.rangeBands([0, width], 0.1, 0.3);
+
+			var svg = d3.select("#idas_chart")
+				.style('width', width + 'px')
+				.style('height', height + 'px');
+
+				svg.selectAll('rect')
+					.data(data)
+					.enter()
+					.append('rect')
+					.attr('class', 'bar')
+					.attr("x", function (d, i) {
+						return xScale(d[0]) * 8;
+					})
+					.attr("y", function (d, i) {
+						return height;
+					})
+					.attr("width", function (d, i) {
+						return barWidth;
+					})
+					.attr("fill", function (d, i) {
+						return 'rgb(256, ' + Math.round(i / 2) + ', ' + i + ')'
+					})
+					// .attr("height", 0)
+					.transition()
+					.duration(200)
+					.delay(function (d, i) {
+						return i * 50;
+					})
+					.attr("y", function (d, i) {
+						return height - yScale(d[1]);
+					})
+					.attr("height", function (d, i) {
+						return yScale(d[1]);
+					});
+	</script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<title>D3 : Animated Bar Chart</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+	<style type="text/css">
+		#chartarea {
+			height: 400px;
+			width: 600px;
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<svg id="chartarea"></svg>
+
+	<script type="text/javascript">
+		var data = d3.range(256).map(function () {
+			return Math.random();
+		});
+
+		var height = 400;
+		var width = 600;
+		var barPadding = 2;
+		var barWidth = (width / data.length) - barPadding;
+
+		var yScale = d3.scale.linear()
+			.domain([0, d3.max(data)])
+			.range([0, height]);
+
+		var xScale = d3.scale.ordinal()
+			.domain(data)
+			.rangeBands([0, width], 0.1, 0.3);
+
+		var svg = d3.select("#chartarea")
+			.style('width', width + 'px')
+			.style('height', height + 'px');
+
+		svg.selectAll('rect')
+			.data(data)
+			.enter()
+			.append('rect')
+			.attr('class', 'bar')
+			.attr("x", function (d, i) {
+				return xScale(d);
+			})
+			.attr("y", function (d, i) {
+				return height;
+			})
+			.attr("width", function (d, i) {
+				return xScale.rangeBand()
+			})
+			.attr("fill", function (d, i) {
+				return 'rgb(256, ' + Math.round(i / 2) + ', ' + i + ')'
+			})
+			.attr("height", 0)
+			.transition()
+			.duration(200)
+			.delay(function (d, i) {
+				return i * 50;
+			})
+			.attr("y", function (d, i) {
+				return height - yScale(d);
+			})
+			.attr("height", function (d, i) {
+				return yScale(d);
+			});
+	</script>
+</body>
+</html> -->

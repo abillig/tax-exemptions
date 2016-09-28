@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.3/jquery.fullPage.css" rel="stylesheet">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="blockToggle.js"></script>
+    <script src="blockMaker.js"></script>
+    <script src="d3_grid.js"></script>
+
+    <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-minimal.css" />
+    <script src="http://github.hubspot.com/odometer/odometer.js"></script>
+
+
+    <!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "linear", "swing" or "easeInOutCubic". -->
+    <script src="vendors/jquery.easings.min.js"></script>
+
+
+    <!-- This following line is only necessary in the case of using the plugin option `scrollOverflow:true` -->
+    <script type="text/javascript" src="vendors/scrolloverflow.min.js"></script>
+
+    <script type="text/javascript" src="jquery.fullPage.js"></script>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+    <style>
+      /*section:nth-of-type(2) {
+          background: url('https://unsplash.it/1910/1221?image=626') no-repeat center / cover;
+      }*/
+
+      #menu{
+        width: 99%;
+        /*height: 20%;*/
+        position:fixed;
+        z-index: 70;
+      }
+
+      #menu li{
+        text-decoration: none;
+        display: inline-block;
+        margin: 1em;
+        margin-top: .5em;
+        background-color: #fff;
+        height: 2em;
+        padding: .5em;
+        height: 50%;
+        border-radius: 10px;
+        font-family: arial;
+        width: 15%;
+        text-align: center;
+        font-size: 24px;
+        /*margin-left: .3em;*/
+        /*margin-left: 25%;*/
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      #menu li:hover {
+        background: rgba(255, 255, 255, 1);
+      }
+
+      #menu a {
+        text-decoration: none;
+        color: black;
+      }
+
+      #grid{
+        margin-top: 33%;
+        margin-left: 8%;
+      }
+
+      #squares_container{
+        margin-left: 9%;
+        margin-top: 10%;
+        margin-bottom: 30%;
+        width: 70%;
+        display: inline-block;
+        /*height: 10%*/
+      }
+
+      #squares_header{
+        float: right;
+      }
+
+
+      #fp-nav ul li a span,
+      .fp-slidesNav ul li a span {
+          background: white;
+          width: 8px;
+          height: 8px;
+          margin: -4px 0 0 -4px;
+      }
+
+      #fp-nav ul li a.active span,
+      .fp-slidesNav ul li a.active span,
+      #fp-nav ul li:hover a.active span,
+      .fp-slidesNav ul li:hover a.active span {
+          width: 16px;
+          height: 16px;
+          margin: -8px 0 0 -8px;
+          background: transparent;
+          box-sizing: border-box;
+          border: 1px solid #24221F;
+      }
+      .odometer {
+            font-size: 100px;
+            /*float: right;*/
+            /*display: none; */
+      }
+
+      /*svg{
+        display: none;
+        position: relative;
+      }*/
+
+      #squares, #squares2{
+        display: none;
+        position: relative;
+      }
+
+      @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+          body {
+            background: #FF0000;
+            width: 100%;
+          }
+        }
+
+    </style>
+
+    <script>
+        $(document).ready(function() {
+              $('#fullpage').fullpage({
+                  //Navigation
+                  menu: '#menu',
+                  lockAnchors: false,
+                  anchors:['firstSection', 'secondSection', 'thirdSection', 'fourthSection'],
+                  navigation: false,
+                  navigationPosition: 'right',
+                  navigationTooltips: ['firstSlide', 'secondSlide'],
+                  showActiveTooltip: false,
+                  slidesNavigation: true,
+                  slidesNavPosition: 'bottom',
+
+                  //Scrolling
+                  css3: true,
+                  scrollingSpeed: 700,
+                  autoScrolling: true,
+                  fitToSection: true,
+                  fitToSectionDelay: 1000,
+                  // scrollBar: false,
+                  easing: 'easeInOutCubic',
+                  easingcss3: 'ease',
+                  loopBottom: false,
+                  loopTop: false,
+                  loopHorizontal: true,
+                  continuousVertical: false,
+                  continuousHorizontal: false,
+                  scrollHorizontally: true,
+                  interlockedSlides: false,
+                  resetSliders: false,
+                  fadingEffect: false,
+                  // normalScrollElements: '#element1, .element2',
+                  scrollOverflow: false,
+                  scrollOverflowOptions: null,
+                  touchSensitivity: 15,
+                  normalScrollElementTouchThreshold: 5,
+                  bigSectionsDestination: null,
+
+                  //Accessibility
+                  keyboardScrolling: true,
+                  animateAnchor: true,
+                  recordHistory: true,
+
+                  //Design
+                  controlArrows: true,
+                  verticalCentered: true,
+                  sectionsColor : ['#ccc', '#d3d3d3', '#fff', '#fff'],
+                  // paddingTop: '3em',
+                  // paddingBottom: '10px',
+                  // fixedElements: '#header, .footer',
+                  // responsiveWidth: 0,
+                  // responsiveHeight: 0,
+                  // responsiveSlides: false,
+
+                  //Custom selectors
+                  sectionSelector: '.section',
+                  slideSelector: '.slide',
+
+                  //events
+                  onLeave: function(index, nextIndex, direction){},
+                  afterLoad: function(anchorLink, index){},
+                  afterRender: function(){},
+                  afterResize: function(){},
+                  afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
+                  onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
+              });
+    });
+    </script>
+
+      <ul id="menu">
+          <li data-menuanchor="firstSection" class="active">
+              <a href="#firstSection" title="First Section">Religious</a>
+          </li>
+          <li data-menuanchor="secondSection">
+              <a href="#secondSection" title="Second Section">Hospitals</a>
+          </li>
+          <li data-menuanchor="thirdSection">
+              <a href="#thirdSection" title="Third Section">IDAs</a>
+          </li>
+          <li data-menuanchor="fouthSection">
+              <a href="#fourthSection" title="Fourth Section">Universities</a>
+          </li>
+
+      </ul>
+
+    <div id="fullpage">
+
+      <!-- <nav class="hide"> -->
+
+      <!-- </nav> -->
+      <section class="section">Some section</section>
+      <section class="section">Some section
+        <div class="slide">
+        </div>
+        <div class="slide" id="secondSlide">
+           <!-- onchange="adjustGrids()" -->
+          <h1>After One Appeal</h1>
+          <div id='squares_container'>
+            <div id="squares" width="200" height="200">
+            <div id="squares_header">
+                <h3>Projects Were Rejected</h3>
+                <h3>Resulting in $</h3>
+            </div>
+            </div>
+          </div>
+          <div id="odometer" class="odometer"></div>
+            <script>adjustableGrid(0)</script>
+        </div>
+        <div class="slide">
+          <div id='squares_container'>
+            <div id="squares2" width="200" height="200"></div>
+            <script>adjustableGridSecond(99)</script>
+            <script>setTimeout(function(){
+              odometer.innerHTML = 8300;
+            }, 1000);</script>
+          </div>
+        </div>
+        <div class="slide"> Slide 4 </div>
+      </section>
+      <section class="section">3</section>
+      <section class="section">4</section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script>  window.addEventListener("scroll",function() {
+      if(window.scrollY > (mytext.clientHeight - window.innerHeight)) {
+          odometerOne.innerHTML = 456;
+          odometerbis.innerHTML = 2009;
+      }
+  },false);
+  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.min.js"></script>
+  </body>
+</html>
