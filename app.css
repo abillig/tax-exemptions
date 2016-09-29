@@ -1,0 +1,395 @@
+/*section:nth-of-type(2) {
+    background: url('https://unsplash.it/1910/1221?image=626') no-repeat center / cover;
+}*/
+
+section:nth-of-type(1) {
+
+}
+
+  .explainer_text{
+    color: white;
+    margin-right: 15%;
+    margin-left: 15%;
+    text-align: center;
+  }
+
+  #ida_chart_text{
+    text-align: left;
+    margin-bottom: -35%;
+    margin-left: 10%;
+  }
+
+  .section_header{
+    color: white;
+    font-family: arial;
+    margin-left: 35%;
+    margin-right: 5%;
+    margin-top: 20%;
+    float: right;
+    width: 50%;
+    position: absolute;
+  }
+
+  .business_header {
+    color: white;
+    font-family: arial;
+    margin-left: 27%;
+    margin-bottom: 10%;
+    font-size: 2em;
+  }
+
+  .business_header.religion{
+    text-align: center;
+    margin-left: 8%;
+  }
+
+  .business_header.hospital{
+    margin-bottom: 0%;
+  }
+
+  .business_header.small_header{
+    font-size: 1.5em;
+    margin: auto;
+    margin-bottom: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+  }
+
+  .business_header.small_header.explainers{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .business_header.small_header.explainers2{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 1em;
+  }
+
+  #lohud_header{
+    text-align: center;
+    color: white;
+    font-size: 2em;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  .avalon_header{
+    color: black;
+    margin-left: 20%;
+    width: 70%;
+  }
+
+  .avalon_header.second{
+    width: 60%;
+  }
+
+  #intro2_header{
+    margin-top: 56%;
+  }
+
+  .property_bar{
+    /*background-color: #95b6bb;*/
+    background-color: #4aa1cc;
+    height: 60%;
+    width: 10%;
+    margin-left: 10%;
+    margin-top: 20%;
+    padding-bottom: -10%;
+    position: relative;
+    z-index: 0;
+  }
+
+  #screen1{
+    color: white;
+    z-index: 1;
+    position: fixed;
+    filter: alpha(opacity=50);
+    background-color:rgba(256, 256, 256, 0.6);
+    width: 10%;
+    height: 20%;
+  }
+
+  #screen2{
+    color: white;
+    z-index: 1;
+    position: fixed;
+    filter: alpha(opacity=50);
+    background-color:rgba(256, 256, 256, 0.6);
+    width: 10%;
+    height: 40%;
+    margin-top: 35.5%;
+  }
+
+  #religion_homepage{
+    background: url('yeshivas.JPG') no-repeat center / cover;
+  }
+
+  #religion_header{
+    font-size: 48px;
+    color: black;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.7);
+    margin-bottom: 75%;
+  }
+
+  .religion_intro{
+    margin-top: -50%;
+    text-align: center;
+    color: white;
+    margin-right: 10%;
+    margin-left: 10%;
+  }
+
+  .religion_intro.second{
+    width: 60%;
+    margin-left: 20%;
+    margin-top: -10%;
+  }
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    #menu {
+      display: none;
+    }
+
+    #lohud{
+      width: 80%;
+      margin-left: 10%;
+    }
+
+    #lohud_small{
+      width: 40%;
+      margin-left: 10%;
+    }
+
+    #squares{
+      margin-top: 0%;
+      margin-left: 12%;
+      margin-bottom: -40%;
+    }
+
+    #exemptionHeader{
+      color: white;
+      padding-left: 10%;
+      padding-right: 10%;
+      padding-top: 40%;
+      font-size: .9em;
+    }
+
+    #rockland_image{
+      margin-top: -80%;
+      margin-bottom: 80%;
+      max-width:100%;
+      max-height:100%;
+    }
+
+    #ida_iframe{
+      margin-left: 10%;
+      width: 80%;
+      height: 60%;
+    }
+
+    .business_elements{
+      margin-top: -30%;
+    }
+
+    .business_elements.hospital{
+      margin-top: -10%;
+    }
+
+    #business_image{
+      -webkit-filter: invert(1);
+filter: invert(1);
+zoom: 10%;
+margin-left: 23%;
+    }
+
+    #religion_intro{
+      background-color: black;
+    }
+
+    #prayer_image{
+      -webkit-filter: invert(1);
+filter: invert(1);
+zoom: 30%;
+margin-left: 30%;
+    }
+
+    #hospital_image{
+      -webkit-filter: invert(1);
+filter: invert(1);
+zoom: 50%;
+margin-left: 17%;
+    }
+
+    .exemption_pie_svg{
+      zoom: 40%;
+      margin-bottom: 30%;
+    }
+
+  }
+
+
+#exemptionHeader{
+  margin: 10%
+}
+
+#menu{
+  width: 99%;
+  /*height: 20%;*/
+  position:fixed;
+  z-index: 70;
+}
+
+#menu li{
+  text-decoration: none;
+  display: inline-block;
+  margin: 1em;
+  margin-top: .5em;
+  background-color: #fff;
+  height: 2em;
+  padding: .5em;
+  height: 50%;
+  border-radius: 10px;
+  font-family: arial;
+  width: 15%;
+  text-align: center;
+  font-size: 24px;
+  /*margin-left: .3em;*/
+  /*margin-left: 25%;*/
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#menu li:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+#menu a {
+  text-decoration: none;
+  color: black;
+}
+
+.fp-tableCell {
+    height: 100% !important;
+    }
+
+#grid{
+  margin-top: 33%;
+  margin-left: 8%;
+}
+
+#squares_container{
+  margin-left: 9%;
+  margin-top: 0%;
+  margin-bottom: 30%;
+  width: 70%;
+  display: inline-block;
+  /*height: 10%*/
+}
+
+#squares{
+  margin-left: 2%;
+  width: 220px;
+  height: 360px;
+}
+
+.squares_header{
+  text-align: center;
+  color: white;
+}
+
+#first_squares_header{
+  margin-top: -30%;
+}
+
+#second_squares_header{
+  margin-left: 20%;
+}
+
+#second_odometer_slide{
+  margin-top: -25%;
+}
+
+.odometer_slide{
+  text-align: center;
+  color: white;
+}
+
+
+
+#ida_iframe{
+  width: 80%;
+  height: 80%;
+}
+
+.odometer_and_dollar{
+  font-size: 70px;
+  display: inline-block;
+  /*position: absolute;*/
+}
+
+.odometer_and_dollar.millions{
+  font-size: 50px;
+  display: inline-block;
+  /*position: absolute;*/
+}
+
+.odometer_and_dollar.millions_container{
+  margin-left: 10%;
+  /*position: absolute;*/
+}
+
+.odometer_and_dollar.millions_container.zero{
+  margin-left: 25%;
+  /*position: absolute;*/
+}
+
+
+
+
+/*svg{
+  display: none;
+  position: relative;
+}*/
+
+#squares, #squares2{
+  display: none;
+  position: relative;
+}
+
+.avalon_slide{
+  background: url('avalon_emporis_cropped_contrast_adjust.jpg') no-repeat center / cover;
+}
+
+#avalon{
+  display: none;
+  opacity: .5;
+  z-index: -1;
+}
+
+
+/*@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    body {
+      background: #FF0000;
+      width: 100%;
+    }
+
+    #squares_container{
+      margin-top: -60%;
+      width: 100%;
+      float: center;
+      /*display: none;*/
+      /*margin-left: 9%;
+      margin-top: -30%;
+      margin-bottom: 30%;
+      width: 100%;*/
+      /*display: inline-block;*/
+      /*height: 10%*/
+    }
+
+
+  }*/

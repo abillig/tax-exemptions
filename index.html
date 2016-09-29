@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <link rel="stylesheet" type="text/css" href="d3.css">
     <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="styles/fullPageStyles.css" />
+    <link rel="stylesheet" type="text/css" href="styles/parks.css" />
+    <link rel="stylesheet" type="text/css" href="styles/universities.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.3/jquery.fullPage.css" rel="stylesheet">
 
@@ -10,10 +15,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="blockToggle.js"></script>
     <script src="blockMaker.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
     <script src="d3_grid.js"></script>
     <script src="d3_exemption_pie.js"></script>
     <script src="d3_idas_bar_chart.js"></script>
+    <script src="d3_pie_generic.js"></script>
     <script src="vendors/parallaxify.min.js"></script>
+    <!-- <script src="./scripts/fullPageScript.js"></script> -->
 
     <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-minimal.css" />
     <script src="http://github.hubspot.com/odometer/odometer.js"></script>
@@ -30,566 +38,167 @@
     <meta charset="utf-8">
     <title></title>
   </head>
+
+<script>
+$(document).ready(function() {
+      $('#fullpage').fullpage({
+          //Navigation
+          menu: '#menu',
+          lockAnchors: false,
+          anchors:['one', 'two', 'three', 'four', 'religion', 'idas', 'fourthSection', 'fifthSection', 'universities'],
+          navigation: false,
+          navigationPosition: 'right',
+          // navigationTooltips: ['firstSlide', 'secondSlide'],
+          showActiveTooltip: false,
+          slidesNavigation: true,
+          slidesNavPosition: 'bottom',
+          responsive: true,
+
+          //Scrolling
+          css3: true,
+          scrollingSpeed: 700,
+          autoScrolling: true,
+          fitToSection: true,
+          fitToSectionDelay: 1000,
+          // scrollBar: false,
+          easing: 'easeInOutCubic',
+          easingcss3: 'ease',
+          loopBottom: false,
+          loopTop: false,
+          loopHorizontal: true,
+          continuousVertical: false,
+          continuousHorizontal: false,
+          scrollHorizontally: true,
+          interlockedSlides: false,
+          resetSliders: false,
+          fadingEffect: false,
+          // normalScrollElements: '#element1, .element2',
+          scrollOverflow: false,
+          scrollOverflowOptions: null,
+          touchSensitivity: 15,
+          normalScrollElementTouchThreshold: 5,
+          bigSectionsDestination: null,
+
+          //Accessibility
+          keyboardScrolling: true,
+          animateAnchor: true,
+          recordHistory: true,
+
+          //Design
+          controlArrows: true,
+          verticalCentered: true,
+          sectionsColor : ['#000', '#000', '#000', '#000', '#2a2a2a', '#000', '#fff', '#000', '#000'],
+          // paddingTop: '3em',
+          // paddingBottom: '10px',
+          // fixedElements: '#header, .footer',
+          // responsiveWidth: 0,
+          // responsiveHeight: 0,
+          // responsiveSlides: false,
+
+          //Custom selectors
+          sectionSelector: '.section',
+          slideSelector: '.slide',
+
+          //events
+          onLeave: function(index, nextIndex, direction){},
+          afterLoad: function(anchorLink, index){},
+          afterRender: function(){},
+          afterResize: function(){},
+          afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
+
+
+            // console.log('anchorLink' + anchorLink + 'index' + index + 'slideIndex' + slideIndex)
+
+            if(anchorLink == "universities" && index == 9 && slideIndex == 2){
+              pieChart("brockfort_graph", [65, 35], ["SUNY", "Non-SUNY"])
+            }
+
+            if(anchorLink == "religion" && index == 5 && slideIndex == 2){
+              // $('.fp-controlArrow.fp-prev').css("zoom", "50%")
+              // $('.fp-controlArrow.fp-next').css("zoom", "50%")
+              religion_chart()
+            }
+
+            if(anchorLink == "idas" && index == 6 && slideIndex == 2){
+              // $('.fp-controlArrow.fp-prev').css("zoom", "50%")
+              // $('.fp-controlArrow.fp-next').css("zoom", "50%")
+              idas_chart()
+            }
+          },
+          onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){
+            //slideIndex is horizontal index
+            //index is vertical position
+            //this ensures that odomoters start movement when slide is loaded, not when
+            //document is loaded.
+            // exemption_pie();
+            // if(anchorLink == "idas" && index == 6 && slideIndex == 0){
+              // $('.fp-controlArrow.fp-prev').css("zoom", "100%")
+              // $('.fp-controlArrow.fp-next').css("zoom", "100%")
+            //   idas_chart()
+            // }
+
+            if (index === 8 && slideIndex === 3){
+            var el = document.querySelector('#first_dollar_figure');
+              od = new Odometer({
+                el: el,
+                value: 10000,
+              });
+              od.update(83000)
+              // or
+              el.innerHTML = 83000
+              }
+
+            if (index === 8 && slideIndex === 5){
+            var el = document.querySelector('#second_dollar_figure');
+              od = new Odometer({
+                el: el,
+                value: 99000,
+              });
+              od.update(43000)
+              // or
+              el.innerHTML = 43000
+              }
+
+
+            if (index === 8 && slideIndex === 4){
+            var el = document.querySelector('#third_dollar_figure');
+              od = new Odometer({
+                el: el,
+                value: 10000000,
+              });
+              od.update(30000000)
+              // or
+              el.innerHTML = 30000000
+              }
+
+            if (index === 8 && slideIndex === 6){
+            var el = document.querySelector('#fourth_dollar_figure');
+              od = new Odometer({
+                el: el,
+                value: 30000000,
+              });
+              od.update(00000000)
+              // or
+              el.innerHTML = 00000000
+              }
+          }
+      });
+      $(function(){exemption_pie()})
+});
+
+$.fn.fullpage.setAllowScrolling(false);
+
+</script>
+
   <body>
 
-    <style>
-      /*section:nth-of-type(2) {
-          background: url('https://unsplash.it/1910/1221?image=626') no-repeat center / cover;
-      }*/
-
-      section:nth-of-type(1) {
-
-      }
-
-        .section_header{
-          color: white;
-          font-family: arial;
-          margin-left: 35%;
-          margin-right: 5%;
-          margin-top: 20%;
-          float: right;
-          width: 50%;
-          position: absolute;
-        }
-
-        .business_header {
-          color: white;
-          font-family: arial;
-          margin-left: 27%;
-          margin-bottom: 10%;
-          font-size: 2em;
-        }
-
-        .business_header.religion{
-          text-align: center;
-          margin-left: 8%;
-        }
-
-        .business_header.hospital{
-          margin-bottom: 0%;
-        }
-
-        .business_header.small_header{
-          font-size: 1.5em;
-          margin: auto;
-          margin-bottom: 10%;
-          margin-left: 5%;
-          margin-right: 5%;
-          text-align: center;
-        }
-
-        .business_header.small_header.explainers{
-          width: 80%;
-          margin-left: 10%;
-          margin-right: 10%;
-        }
-
-        .business_header.small_header.explainers2{
-          width: 80%;
-          margin-left: 10%;
-          margin-right: 10%;
-          font-size: 1em;
-        }
-
-        #lohud_header{
-          text-align: center;
-          color: white;
-          font-size: 2em;
-          margin-left: 10%;
-          margin-right: 10%;
-        }
-
-        .avalon_header{
-          color: black;
-          margin-left: 20%;
-          width: 70%;
-        }
-
-        .avalon_header.second{
-          width: 60%;
-        }
-
-        #intro2_header{
-          margin-top: 56%;
-        }
-
-        .property_bar{
-          /*background-color: #95b6bb;*/
-          background-color: #4aa1cc;
-          height: 60%;
-          width: 10%;
-          margin-left: 10%;
-          margin-top: 20%;
-          padding-bottom: -10%;
-          position: relative;
-          z-index: 0;
-        }
-
-        #screen1{
-          color: white;
-          z-index: 1;
-          position: fixed;
-          filter: alpha(opacity=50);
-          background-color:rgba(256, 256, 256, 0.6);
-          width: 10%;
-          height: 20%;
-        }
-
-        #screen2{
-          color: white;
-          z-index: 1;
-          position: fixed;
-          filter: alpha(opacity=50);
-          background-color:rgba(256, 256, 256, 0.6);
-          width: 10%;
-          height: 40%;
-          margin-top: 35.5%;
-        }
-
-        #religion_homepage{
-          background: url('yeshivas.JPG') no-repeat center / cover;
-        }
-
-        #religion_header{
-          font-size: 48px;
-          color: black;
-          text-align: center;
-          background: rgba(255, 255, 255, 0.7);
-          margin-bottom: 75%;
-        }
-
-        .religion_intro{
-          margin-top: -50%;
-          text-align: center;
-          color: white;
-          margin-right: 10%;
-          margin-left: 10%;
-        }
-
-        .religion_intro.second{
-          width: 60%;
-          margin-left: 20%;
-          margin-top: -10%;
-        }
-
-        .public_land_section{
-          color: white;
-        }
-
-        #new_york_image{
-          zoom: 30%;
-        }
-
-        #new_york_counties{
-          zoom: 20%;
-        }
-
-      @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-          #menu {
-            display: none;
-          }
-
-          #lohud{
-            width: 80%;
-            margin-left: 10%;
-          }
-
-          #lohud_small{
-            width: 40%;
-            margin-left: 10%;
-          }
-
-          #squares{
-            margin-top: 0%;
-            margin-left: 12%;
-            margin-bottom: -40%;
-          }
-
-          #exemptionHeader{
-            color: white;
-            padding-left: 10%;
-            padding-right: 10%;
-            padding-top: 40%;
-            font-size: .9em;
-          }
-
-          #rockland_image{
-            margin-top: -80%;
-            margin-bottom: 80%;
-            max-width:100%;
-            max-height:100%;
-          }
-
-          #ida_iframe{
-            margin-left: 10%;
-            width: 80%;
-            height: 60%;
-          }
-
-          .business_elements{
-            margin-top: -30%;
-          }
-
-          .business_elements.hospital{
-            margin-top: -10%;
-          }
-
-          #business_image{
-            -webkit-filter: invert(1);
-    filter: invert(1);
-    zoom: 10%;
-    margin-left: 23%;
-          }
-
-          #religion_intro{
-            background-color: black;
-          }
-
-          #prayer_image{
-            -webkit-filter: invert(1);
-    filter: invert(1);
-    zoom: 30%;
-    margin-left: 30%;
-          }
-
-          #hospital_image{
-            -webkit-filter: invert(1);
-    filter: invert(1);
-    zoom: 50%;
-    margin-left: 17%;
-          }
-
-          .exemption_pie_svg{
-            zoom: 40%;
-            margin-bottom: 30%;
-          }
-
-        }
-
-
-      #exemptionHeader{
-        margin: 10%
-      }
-
-      #menu{
-        width: 99%;
-        /*height: 20%;*/
-        position:fixed;
-        z-index: 70;
-      }
-
-      #menu li{
-        text-decoration: none;
-        display: inline-block;
-        margin: 1em;
-        margin-top: .5em;
-        background-color: #fff;
-        height: 2em;
-        padding: .5em;
-        height: 50%;
-        border-radius: 10px;
-        font-family: arial;
-        width: 15%;
-        text-align: center;
-        font-size: 24px;
-        /*margin-left: .3em;*/
-        /*margin-left: 25%;*/
-        background: rgba(255, 255, 255, 0.5);
-      }
-
-      #menu li:hover {
-        background: rgba(255, 255, 255, 1);
-      }
-
-      #menu a {
-        text-decoration: none;
-        color: black;
-      }
-
-      .fp-tableCell {
-          height: 100% !important;
-          }
-
-      #grid{
-        margin-top: 33%;
-        margin-left: 8%;
-      }
-
-      #squares_container{
-        margin-left: 9%;
-        margin-top: 0%;
-        margin-bottom: 30%;
-        width: 70%;
-        display: inline-block;
-        /*height: 10%*/
-      }
-
-      #squares{
-        margin-left: 2%;
-        width: 220px;
-        height: 360px;
-      }
-
-      .squares_header{
-        text-align: center;
-        color: white;
-      }
-
-      #first_squares_header{
-        margin-top: -30%;
-      }
-
-      #second_squares_header{
-        margin-left: 20%;
-      }
-
-      #second_odometer_slide{
-        margin-top: -25%;
-      }
-
-      .odometer_slide{
-        text-align: center;
-        color: white;
-      }
-
-
-
-      #ida_iframe{
-        width: 80%;
-        height: 80%;
-      }
-
-      #fp-nav ul li a span,
-      .fp-slidesNav ul li a span {
-          background: white;
-          width: 8px;
-          height: 8px;
-          margin: -4px 0 0 -4px;
-      }
-
-      #fp-nav ul li a.active span,
-      .fp-slidesNav ul li a.active span,
-      #fp-nav ul li:hover a.active span,
-      .fp-slidesNav ul li:hover a.active span {
-          width: 16px;
-          height: 16px;
-          margin: -8px 0 0 -8px;
-          background: transparent;
-          box-sizing: border-box;
-          border: 1px solid #24221F;
-      }
-
-      .odometer_and_dollar{
-        font-size: 70px;
-        display: inline-block;
-        /*position: absolute;*/
-      }
-
-      /*svg{
-        display: none;
-        position: relative;
-      }*/
-
-      #squares, #squares2{
-        display: none;
-        position: relative;
-      }
-
-      .avalon_slide{
-        background: url('avalon_emporis_cropped_contrast_adjust.jpg') no-repeat center / cover;
-      }
-
-      #avalon{
-        display: none;
-        opacity: .5;
-        z-index: -1;
-      }
-
-      #idas_chart {
-  			height: 400px;
-  			width: 600px;
-  			border: 1px solid black;
-  		}
-
-      /*@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-          body {
-            background: #FF0000;
-            width: 100%;
-          }
-
-          #squares_container{
-            margin-top: -60%;
-            width: 100%;
-            float: center;
-            /*display: none;*/
-            /*margin-left: 9%;
-            margin-top: -30%;
-            margin-bottom: 30%;
-            width: 100%;*/
-            /*display: inline-block;*/
-            /*height: 10%*/
-          }
-
-
-        }*/
-
-    </style>
-
-    <script>
-        $(document).ready(function() {
-              $('#fullpage').fullpage({
-                  //Navigation
-                  menu: '#menu',
-                  lockAnchors: false,
-                  anchors:['one', 'two', 'three', 'four', 'secondSection', 'idas', 'fourthSection', 'fifthSection'],
-                  navigation: false,
-                  navigationPosition: 'right',
-                  // navigationTooltips: ['firstSlide', 'secondSlide'],
-                  showActiveTooltip: false,
-                  slidesNavigation: true,
-                  slidesNavPosition: 'bottom',
-                  responsive: true,
-
-                  //Scrolling
-                  css3: true,
-                  scrollingSpeed: 700,
-                  autoScrolling: true,
-                  fitToSection: true,
-                  fitToSectionDelay: 1000,
-                  // scrollBar: false,
-                  easing: 'easeInOutCubic',
-                  easingcss3: 'ease',
-                  loopBottom: false,
-                  loopTop: false,
-                  loopHorizontal: true,
-                  continuousVertical: false,
-                  continuousHorizontal: false,
-                  scrollHorizontally: true,
-                  interlockedSlides: false,
-                  resetSliders: false,
-                  fadingEffect: false,
-                  // normalScrollElements: '#element1, .element2',
-                  scrollOverflow: false,
-                  scrollOverflowOptions: null,
-                  touchSensitivity: 15,
-                  normalScrollElementTouchThreshold: 5,
-                  bigSectionsDestination: null,
-
-                  //Accessibility
-                  keyboardScrolling: true,
-                  animateAnchor: true,
-                  recordHistory: true,
-
-                  //Design
-                  controlArrows: true,
-                  verticalCentered: true,
-                  sectionsColor : ['#000', '#000', '#000', '#000', '#2a2a2a', '#fff', '#fff', '#000'],
-                  // paddingTop: '3em',
-                  // paddingBottom: '10px',
-                  // fixedElements: '#header, .footer',
-                  // responsiveWidth: 0,
-                  // responsiveHeight: 0,
-                  // responsiveSlides: false,
-
-                  //Custom selectors
-                  sectionSelector: '.section',
-                  slideSelector: '.slide',
-
-                  //events
-                  onLeave: function(index, nextIndex, direction){},
-                  afterLoad: function(anchorLink, index){},
-                  afterRender: function(){},
-                  afterResize: function(){},
-                  afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
-                    if(anchorLink == "idas" && index == 6 && slideIndex == 1){
-                      idas_chart()
-                    }
-                  },
-                  onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){
-                    //this ensures that odomoters start movement when slide is loaded, not when
-                    //document is loaded.
-                    // exemption_pie();
-                    if (slideIndex === 3){
-                    var el = document.querySelector('#first_dollar_figure');
-                      od = new Odometer({
-                        el: el,
-                        value: 10000,
-                      });
-                      od.update(83000)
-                      // or
-                      el.innerHTML = 83000
-                      }
-                    if (slideIndex === 5){
-                    var el = document.querySelector('#second_dollar_figure');
-                      od = new Odometer({
-                        el: el,
-                        value: 99000,
-                      });
-                      od.update(43000)
-                      // or
-                      el.innerHTML = 43000
-                      }
-                  }
-              });
-              $(function(){exemption_pie()})
-    });
-
-    $.fn.fullpage.setAllowScrolling(false);
-
-    </script>
-    <script>
-    $.parallaxify({
-        // enable parallax effect for horizontal, vertical or both directions
-        horizontalParallax: true,
-        verticalParallax: true,
-
-        // enable or disable parallax effect for elements or backgrounds
-        parallaxBackgrounds: true,
-        parallaxElements: true,
-
-        // set which positioning property is to be used
-        // options include 'position' or 'transform' using css transformations
-        positionProperty: 'position',
-
-        // enable for responsive layouts
-        // (upon orientation changes or window resizing element positions are reevaluated
-        responsive: false,
-
-        // enable or disable mouse or gyroscope data as input for the plugin
-        useMouseMove: true,
-        useGyroscope: true,
-
-        // use a Low Pass Filter to smooth sensor readings (1 = no filter)
-        alphaFilter: 0.9,
-
-        // set which motion type algorithm is to be used
-        // options include 'natural', 'linear', 'gaussian', or 'performance'
-        motionType: 'natural',
-        mouseMotionType: 'gaussian',
-
-        // define which sensor input has priority over the other
-        // options are either 'mouse' or 'gyroscope'
-        inputPriority: 'mouse',
-
-        // define the delta angle (0 < motionAngle < 90)
-        // that is used to render max parallax in this direction
-        motionAngleX: 80,
-        motionAngleY: 80,
-
-        // enable of adjustment of base position (using a Low Pass Filter)
-        // (adapting to device usage while plugin is running)
-        adjustBasePosition: true,
-        // alpha for Low Pass Filter used to adjust average position
-        alphaPosition: 0.05,
-    });
-    </script>
 
       <ul id="menu">
           <li data-menuanchor="firstSection" class="active">
               <a href="#firstSection" title="First Section">First Section</a>
           </li>
-          <li data-menuanchor="secondSection">
-              <a href="#secondSection" title="Second Section">Second Section</a>
+          <li data-menuanchor="religion">
+              <a href="#religion" title="Second Section">Second Section</a>
           </li>
           <li data-menuanchor="idas">
               <a href="#idas" title="Third Section">Third Section</a>
@@ -642,6 +251,15 @@
         </div> -->
         <div class="slide">
             <div id="exemptionHeader">
+              <h2 class="religion_intro">Religious organizations can apply for exemptions on their land.<br><br>
+            </div>
+        </div>
+        <div class="slide">
+          <h2 class = "explainer_text">The value of this exempt land has risen dramatically to nearly $26 billion in 2015.</h2>
+            <svg id="religion_chart">
+        </div>
+        <div class="slide">
+            <div id="exemptionHeader">
               <!-- <h1>Religious Organizations</h1> -->
               <img id="rockland_image" src="rockland_county.png"></img>
               <h2 class="religion_intro">Ramapo, New York, has an extremely high concentration of synagogues and Yeshivas.<br><br>
@@ -652,12 +270,11 @@
         <div class="slide">
             <div>
               <h2 class="religion_intro second">
-                These organizations can apply for religious exemptions on their land.<br><br>
-                But even when their applications are rejected, they can keep reapplying.</h2>
+                Even when Ramapo decides not to grant a tax exemption, religious groups can keep appealing.</h2>
             </div>
         </div>
         <div class="slide">
-          <div class="squares_header" id="first_squares_header"><h1>In 2015, 240 religious exemptions were rejected by the state.</h1><div>
+          <div class="squares_header" id="first_squares_header"><h1>In 2015, Ramapo decided not to grant 240 religious exemptions.</h1><div>
           <div id='squares_container'>
             <div id="squares" width="200" height="200" data-parallaxify-range-x="100"></div>
           </div>
@@ -666,17 +283,17 @@
         </div>
         <div class="slide">
           <div class="odometer_slide">
-            <h1>That led to</h1>
+            <h1>That meant that</h1>
                 <div class="odometer_and_dollar">
                   <div class="odometer_and_dollar">$</div>
-                  <div class="odometer_and_dollar odometer_dollars" id="first_dollar_figure"></div>
+                  <div class="odometer_and_dollar" id="first_dollar_figure"></div>
                 </div>
-            <h1>in taxes.</h1>
+            <h1>in land would be taxed.</h1>
           </div>
         </div>
         <div class="slide">
           <div id='squares_container'>
-            <div class="squares_header" id="second_squares_header"><h1>But after appeals, half of the rejections were reversed.</h1><div>
+            <div class="squares_header" id="second_squares_header"><h1>But after appeals, 180 of these rejections were reversed.</h1><div>
             <div id="squares2" width="200" height="200"></div>
             <script>adjustableGridSecond(99)</script>
             <!-- <script>setTimeout(function(){
@@ -686,10 +303,10 @@
         </div>
         <div class="slide">
           <div class="odometer_slide" id="second_odometer_slide">
-          <h1>The state's collected taxes dropped to</h1>
+          <h1>The state's taxed land dropped to</h1>
             <div class="odometer_and_dollar">
               <div class="odometer_and_dollar">$</div>
-              <div class="odometer_and_dollar odometer_dollars" id="second_dollar_figure"></div>
+              <div class="odometer_and_dollar" id="second_dollar_figure"></div>
             </div>
           </div>
         </div>
@@ -701,9 +318,17 @@
             <img id="business_image" src="business.png"></img>
           </div>
         </div>
-          <!-- <div class="slide">
-              <svg id="idas_chart"></div>
-          </div> -->
+        <div class="slide">
+            <h1 class = "explainer_text">Many businesses don't pay state taxes on their land.</h1>
+            <h1 class = "explainer_text">The idea is that businesses bring jobs, and so they get a break.</h1>
+        </div>
+          <div class="slide">
+            <h2 class = "explainer_text" id="ida_chart_text">This untaxed land's value has tripled to $33 billion since 1999.</h2>
+              <svg id="idas_chart">
+          </div>
+          <div class="slide">
+            <h2 class = "explainer_text">Yet New York's Authorities Budget Office found "little correlation" between these projects and job growth.</h2>
+          </div>
          <div class="slide avalon_slide">
             <!-- <img id="avalon" src="avalon_emporis_cropped.jpg"></img> -->
             <h1 class="business_header avalon_header">The $237 million Avalon apartment buildings in New Rochelle were supposed to help revitalize the Sound Shore by attracting millennials.</h1>
@@ -754,31 +379,69 @@
             <h1 class="business_header hospital">Public Land</h1>
           </div>
         </div>
-        <div class="slide">
-          <h3 class="public_land_section">New York State owns $X billion in public land like parks and prisons.</h3>
-          <img src="new_york.png" id="new_york_image"></img>
+        <div class="slide park_slide">
+          <h2 class="business_header avalon_header">New York State owns about 4 million acres of land, including parks and prisons.</h2>
+          <!-- <img src="new_york.png" id="new_york_image"></img> -->
         </div>
-        <div class="slide public_land_section">
-          The state pays its counties taxes on that land.
+        <div class="slide park_slide_bw">
           <img src="new_york_counties.png" id="new_york_counties"></img>
+          <h1 class="business_header avalon_header">The state pays its counties taxes on that land.</h1>
+
         </div>
         <div class="slide public_land_section">
-          But not all counties.
+          <h1 class="business_header avalon_header white">But not all counties.</h1>
         </div>
         <div class="slide public_land_section">
-          Putnam and Rockland contain $1 billion in public lands.
+          <div id="counties">
+            <img src="putnam_county.png" id="putnam_parks_image"></img>
+            <img src="rockland_county.png" id="rockland_parks_image"></img>
+          </div>
+          <h2 class="explainer_text putnam">Putnam County and Rockland County collect taxes on public land worth<span class="red">$1 billion</span>.</h2>
         </div>
         <div class="slide public_land_section">
-          The state pays them $30 million in town, county, and school taxes.
+          <h2 class="explainer_text">The state pays them</h2>
+          <div class="odometer_and_dollar millions_container">
+            <div class="odometer_and_dollar millions">$</div>
+            <div class="odometer_and_dollar millions" id="third_dollar_figure"></div>
+          </div>
+           <h2 class="explainer_text">in town, county, and school taxes.</h2>
         </div>
         <div class="slide public_land_section">
-          Nearby Westchester county contains $3.7 billion in public lands -- almost 4 times as much as its neighbors.
+          <img src="westchester_county.png" id="westchester_parks_image"></img>
+          <h2 class="explainer_text">Westchester County has <span class="red">$3.7 billion</span> in public lands.</h2>
         </div>
         <div class="slide public_land_section">
-          The state pays it $0 in taxes.
+          <h2 class="explainer_text">Yet the state pays Westchester</h2>
+          <div class="odometer_and_dollar millions_container zero">
+            <div class="odometer_and_dollar millions">$</div>
+            <div class="odometer_and_dollar millions" id="fourth_dollar_figure"></div>
+          </div>
+          <h2 class="explainer_text">in taxes on that land.</h2>
+        </div>
+        <div class="slide sing_sing">
+          <h1 class="business_header avalon_header">New York pays school taxes to Ossining for the Sing Sing prison.</h1>
+        </div>
+        <div class="slide taconic_womens">
+          <h1 class="business_header avalon_header">But none to ____ for the ____ prison.</h1>
+        </div>
+      </section>
+      <section class="section" class="public_land_section">
+        <div class="slide">
+          <div class="business_elements hospital">
+            <h1 class="business_header hospital">Universities</h1>
+          </div>
+        </div>
+          <div class="slide">
+            <h2 class="explainer_text">Brockfort is a small village in Monroe County.</h2>
+            <img src="brockfort.svg" id="brockfort_image"></img>
+          </div>
+        <div class="slide">
+          <h2 class="explainer_text">65% of the village land is part of the.</h2>
+          <canvas id="brockfort_graph"></canvas>
         </div>
       </section>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.6.6/jquery.fullPage.min.js"></script>
   </body>

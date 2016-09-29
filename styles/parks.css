@@ -1,0 +1,80 @@
+.slide.park_slide{
+  background: url('../Letchworth_State_Park.jpeg') no-repeat center / cover;
+  /*opacity: .5;*/
+  z-index: -1;
+}
+
+.slide.park_slide_bw{
+  background: url('../Letchworth_State_Park.jpeg') no-repeat center / cover;
+  /*opacity: .5;*/
+  z-index: -1;
+}
+
+#black_text{
+  color: black;
+}
+
+.public_land_section{
+  color: white;
+}
+
+.slide.sing_sing{
+  background: url('../sing_sing.jpg') no-repeat center / cover;
+  color: white;
+}
+
+.slide.taconic_womens{
+  background: url('../taconic_womens_copyrighted.jpg') no-repeat center / cover;
+}
+
+#new_york_image{
+  zoom: 30%;
+  margin-left: 10%;
+}
+
+#new_york_counties{
+  zoom: 50%;
+  margin-left: 10%;
+  margin-top: -30%;
+}
+
+#putnam_parks_image{
+  zoom: 90%;
+  margin-left: 4%;
+}
+
+#rockland_parks_image{
+  zoom: 22%;
+}
+
+#westchester_parks_image{
+  zoom: 30%;
+  margin-left: 22%;
+  margin-top: -50%;
+}
+
+#counties{
+  margin-top: -40%;
+}
+
+.explainer_text.putnam{
+  margin-top: 10%;
+}
+
+.red{
+  color: red;
+}
+
+.white{
+  color: white;
+  font-family: arial;
+  margin-left: 16%;
+  margin-bottom: 9%;
+  font-size: 2em;
+  text-align: center;
+}
+
+#millions{
+  color: green;
+  font-size: 1em;
+}
