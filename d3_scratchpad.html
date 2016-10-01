@@ -22,12 +22,12 @@
 		<canvas id="myChart"></canvas>
 		<div>
 		<script>
-		// var pieChart = function(elementId, dataArray){
+		var pieChart = function(element, dataArray, labelsArray){
 		var ctx = document.getElementById("myChart");
 		var myChart = new Chart(ctx, {
 		  type: 'pie',
 		  data: {
-		    labels: ["SUNY", "Non-SUNY"],
+		    labels: labelsArray,
 		    datasets: [{
 		      backgroundColor: [
 		        "#2ecc71",
@@ -38,11 +38,11 @@
 		        "#e74c3c",
 		        "#34495e"
 		      ],
-		      data: [65, 35]
+		      data: dataArray
 		    }]
 		  }
 		});
-	// }
+	}
 
 </script>
 

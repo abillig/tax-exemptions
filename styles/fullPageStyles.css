@@ -1,5 +1,9 @@
 .fp-controlArrow.fp-next, .fp-controlArrow.fp-prev {
-  zoom: 50%;
+  /*zoom: 50%;*/
+}
+
+.fp-controlArrow.fp-prev{
+  display: none;
 }
 
 

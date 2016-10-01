@@ -33,25 +33,24 @@
 }
 
 #new_york_counties{
-  zoom: 50%;
-  margin-left: 10%;
-  margin-top: -30%;
+  margin-top: -20%;
+  margin-bottom: 10%;
 }
 
 #putnam_parks_image{
   zoom: 90%;
-  margin-left: 4%;
+  /*margin-left: 4%;*/
+}
+
+#putnam_rockland{
+  margin-top: -20%;
 }
 
 #rockland_parks_image{
   zoom: 22%;
+  margin-left: -5%;
 }
 
-#westchester_parks_image{
-  zoom: 30%;
-  margin-left: 22%;
-  margin-top: -50%;
-}
 
 #counties{
   margin-top: -40%;
@@ -77,4 +76,14 @@
 #millions{
   color: green;
   font-size: 1em;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+#westchester_image{
+  zoom: 30%;
+  /*margin-left: 22%;*/
+  margin-top: -50%;
+}
+
 }
