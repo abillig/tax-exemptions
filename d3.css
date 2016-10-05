@@ -8,9 +8,8 @@
 
 #religion_chart{
   height: 300px;
-  width: 95%;
-  margin-left: 0%;
-  margin-top: 0%;
+  width: 90%;
+margin-left: 30%;
 }
 
 .axis path,
@@ -41,6 +40,13 @@ svg text {
     margin-left: 2%;
     /*margin-right: 25%;*/
     margin-top: 40%;
+  }
+
+  #religion_chart{
+    height: 300px;
+    width: 95%;
+    margin-left: 0%;
+    margin-top: 0%;
   }
 
 }

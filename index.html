@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="styles/universities.css" />
     <link rel="stylesheet" type="text/css" href="styles/iphone.css" />
     <link rel="stylesheet" type="text/css" href="styles/ipad.css" />
+    <link rel="stylesheet" type="text/css" href="styles/arrow.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.3/jquery.fullPage.css" rel="stylesheet">
 
@@ -44,14 +45,16 @@
     <meta charset="utf-8">
     <title></title>
   </head>
+<script>
 
+</script>
 <script>
 $(document).ready(function() {
       $('#fullpage').fullpage({
           //Navigation
           menu: '#menu',
           lockAnchors: false,
-          anchors:['one', 'two', 'three', 'four', 'religion', 'idas', 'fourthSection', 'fifthSection', 'universities'],
+          anchors:['introduction', 'introduction2', 'introduction3', 'four', 'religion', 'idas', 'fourthSection', 'fifthSection', 'universities'],
           navigation: false,
           navigationPosition: 'right',
           // navigationTooltips: ['firstSlide', 'secondSlide'],
@@ -107,13 +110,28 @@ $(document).ready(function() {
 
           //events
           onLeave: function(index, nextIndex, direction){},
-          afterLoad: function(anchorLink, index){},
+          afterLoad: function(anchorLink, index){
+            console.log('anchorLink ===' + anchorLink + '&& index ===' + index)
+            if(anchorLink === 'introduction' && index === 1){
+              $('.intro_fill').animate({ height: '100%' }, {
+                duration: 500,
+                });
+              } else if (anchorLink === 'introduction2' && index === 2){
+                $('.first_division').animate({ height: '100%' }, {
+                  duration: 500,
+                  });
+              } else if (anchorLink === 'introduction3' && index === 3){
+                $('.second_division').animate({ height: '100%' }, {
+                  duration: 500,
+                  });
+              }
+          },
           afterRender: function(){},
           afterResize: function(){},
           afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
 
 
-            console.log('anchorLink ===' + anchorLink + '&& index ===' + index + ' && slideIndex ===' + slideIndex)
+            // console.log('anchorLink ===' + anchorLink + '&& index ===' + index + ' && slideIndex ===' + slideIndex)
 
             if(slideIndex === 0){
               $('.fp-controlArrow.fp-prev').hide()
@@ -254,10 +272,23 @@ $.fn.fullpage.setAllowScrolling(false);
       <!-- </nav> -->
       <section class="section" id="intro">
         <img id="lohud" src="lohud_header.png"></img>
+        <div id='screen'>
+            <div class="intro_fill"></div>
+            <div class="intro_content">
+              <h1 class="section_header centered">Land in New York is worth a combined $2.8 trillion.</h1>
+            </div>
+        </div>
+        <svg class="arrows">
+							<!-- <path class="a1" d="M0 0 L30 32 L60 0"></path> -->
+					<path class="a2" d="M0 20 L30 52 L60 20"></path>
+					<path class="a3" d="M0 40 L30 72 L60 40"></path>
+				</svg>
+        <!-- ORIGINAL <img id="lohud" src="lohud_header.png"></img>
         <h1 class="section_header">Land in New York is worth a combined <strong> $2.8 trillion. </strong></h1>
 
-        <div class="property_bar"></div>
-          <!-- <div id="property_bar_container"> -->
+        <div class="property_bar"></div> -->
+
+          <!-- INITIAL SCREEN <div id="property_bar_container"> -->
 
             <!-- <canvas id="property_bar"></canvas>
             <script>single_bar('property_bar', 100, 0)</script> -->
@@ -266,24 +297,47 @@ $.fn.fullpage.setAllowScrolling(false);
       <section class="section" id="intro2">
 
         <img id="lohud_small" src="lohud_header.png"></img>
+        <div id='split_screen_1'>
+            <div class="first_division"></div>
+            <div class="intro_content">
+              <h2 class="section_header centered mid_upper">Of that, about two thirds is taxed.</h2>
+            </div>
+        </div>
+        <svg class="arrows">
+							<!-- <path class="a1" d="M0 0 L30 32 L60 0"></path> -->
+					<path class="a2" d="M0 20 L30 52 L60 20"></path>
+					<path class="a3" d="M0 40 L30 72 L60 40"></path>
+				</svg>
         <!-- <div id="property_bar_container_2" class="property_bar_container">
           <canvas id="property_bar_2"></canvas>
         </div> -->
-        <h2 class="section_header" id="intro2_header">Of that, about two thirds is taxed.</h2>
+
+        <!-- <h2 class="section_header" id="intro2_header">Of that, about two thirds is taxed.</h2>
         <div class="property_bar">
         <div id="screen1"></div>
-      </div>
+      </div> -->
     </section>
       <section class="section" id="intro3">
         <img id="lohud_small" src="lohud_header.png"></img>
-        <h2 class="section_header" id="intro3_header">The other third, $856 billion, is tax exempt.</h2>
+        <div id='split_screen_2'>
+            <div class="second_division"></div>
+            <div class="intro_content">
+              <h2 class="section_header centered upper">The other third, $856 billion, is tax exempt.</h2>
+            </div>
+        </div>
+        <svg class="arrows">
+							<!-- <path class="a1" d="M0 0 L30 32 L60 0"></path> -->
+					<path class="a2" d="M0 20 L30 52 L60 20"></path>
+					<path class="a3" d="M0 40 L30 72 L60 40"></path>
+				</svg>
+        <!-- <h2 class="section_header" id="intro3_header">The other third, $856 billion, is tax exempt.</h2>
         <div class="property_bar">
           <div id="screen2"></div>
-        </div>
+        </div> -->
       </section>
       <section class="section">
 
-        <h2 class="explainer_text">The <em>Journal News</em> investigated where that money goes. Swipe down to find out more.</h2>
+        <h2 class="explainer_text">The <em>Journal News</em> investigated where that money goes. <br><br>Swipe down to find out more.</h2>
     </section>
       <section class="section" id="religious">
         <div class="slide" id="religion_intro">
@@ -352,6 +406,7 @@ $.fn.fullpage.setAllowScrolling(false);
         <div class="slide">
           <h2 class = "explainer_text ida_chart_text religion">Statewide, the value of land granted religious exemptions has risen to nearly $26 billion in 2015.</h2>
             <svg id="religion_chart">
+
         </div>
       </section>
       <section class="section">

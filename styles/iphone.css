@@ -1,4 +1,28 @@
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+    .section_header.centered {
+      text-align: left;
+      font-size: 3.5vh;
+      /*margin-left: 30%;
+      margin-right: 20%;*/
+    }
+
+    .section_header.centered.mid_upper {
+      text-align: left;
+      font-size: 3.5vh;
+      margin-top: 20%;
+      /*margin-left: 30%;
+      margin-right: 20%;*/
+    }
+
+
+    .section_header.centered.upper {
+      /*text-align: center;*/
+      text-align: left;
+      font-size: 3.5vh;
+      margin-top: 4%;
+    }
+
     #menu {
       display: none;
     }
