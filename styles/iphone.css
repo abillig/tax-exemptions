@@ -1,0 +1,131 @@
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    #menu {
+      display: none;
+    }
+    #property_bar{
+      /*width: 144%;*/
+      height: 82% !important;
+      /*margin-top: -40%; */
+      /*margin-bottom: -50%;*/
+      /*position: absolute;*/
+      /*height: 100%;*/
+      /*margin-left: -19.3%;*/
+    }
+
+    #property_bar_container{
+      /*width: 100%;*/
+      height: 80%;
+      margin-bottom: -72%;
+      margin-right: 0 auto;
+      margin-left: 0 auto;
+      /*position: absolute;*/
+      /*height: 100%;*/
+      /*margin-left: -19.3%;*/
+    }
+
+    .header.image_header.small{
+      width: 70%;
+      margin-left: 20%;
+      }
+
+    #lohud{
+      width: 80%;
+      margin-left: 10%;
+      margin-top: 0%;
+    }
+
+    #lohud_small{
+      width: 40%;
+      margin-left: 10%;
+      margin-top: 0%;
+    }
+
+    #squares{
+      margin-top: 0%;
+      margin-left: 12%;
+      margin-bottom: -40%;
+    }
+
+
+    /*#rockland_image{
+      margin-top: -80%;
+      margin-bottom: 80%;
+      width:100%;
+      max-height:100%;
+    }*/
+
+    #ida_iframe{
+      margin-left: 10%;
+      width: 80%;
+      height: 60%;
+    }
+
+    .business_elements{
+      margin-top: -30%;
+    }
+
+    .business_elements.hospital{
+      margin-top: -10%;
+    }
+
+
+    #religion_intro{
+      background-color: black;
+    }
+
+
+    #hospital_image{
+      -webkit-filter: invert(1);
+filter: invert(1);
+zoom: 50%;
+margin-left: 17%;
+    }
+
+    .exemption_pie_svg{
+      zoom: 40%;
+      margin-bottom: 30%;
+    }
+
+
+    .icon, .icon.public_land, .icon.small, .icon.negative.universities {
+      width: 60%;
+      margin: 0 auto;
+      margin-left: 20%;
+      margin-top: 5%;
+    }
+
+    .icon.negative{
+      -webkit-filter: invert(1);
+  filter: invert(1);
+    }
+
+
+    .icon.negative.religious{
+      width: 50%;
+      margin-left: 25%;
+      margin-top: 15%;
+    }
+
+    .icon.negative.business_image{
+      width: 60%;
+      margin-left: 20%;
+      margin-top: 6%;
+    }
+
+    #second_odometer_slide{
+      margin-bottom: 25%;
+    }
+
+    .ida_chart_text{
+      text-align: left;
+      margin-bottom: -35%;
+      margin-left: 10%;
+    }
+
+    .explainer_text.ida_chart_text.religion{
+      /*margin-top: -10%;*/
+      margin-bottom: 10%;
+    }
+
+
+  }

@@ -13,8 +13,8 @@ var data = [[2000, 11985077731],
 [2014, 32329198846],
 [2015, 33791219220]]
 
-    var h = 400;
-    var w = 325;
+    var h = 300;
+    var w = 290;
     var barPadding = 2;
     var datasetLength = Object.keys(data).length
     var padding = 30;
@@ -140,8 +140,8 @@ var religion_chart = function(){
 
 
 
-      var h = 400;
-      var w = 325;
+      var h = 300;
+      var w = 290;
       var barPadding = 2;
       var datasetLength = Object.keys(data).length
       var padding = 30;

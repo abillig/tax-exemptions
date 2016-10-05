@@ -5,10 +5,13 @@
     <link rel="stylesheet" type="text/css" href="d3.css">
     <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
     <link rel="stylesheet" type="text/css" href="styles/fullPageStyles.css" />
-    <link rel="stylesheet" type="text/css" href="styles/ipad.css" />
     <link rel="stylesheet" type="text/css" href="styles/desktop.css" />
     <link rel="stylesheet" type="text/css" href="styles/parks.css" />
+    <link rel="stylesheet" type="text/css" href="styles/odometerStyles.css" />
+    <link rel="stylesheet" type="text/css" href="styles/iconViews.css" />
     <link rel="stylesheet" type="text/css" href="styles/universities.css" />
+    <link rel="stylesheet" type="text/css" href="styles/iphone.css" />
+    <link rel="stylesheet" type="text/css" href="styles/ipad.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.3/jquery.fullPage.css" rel="stylesheet">
 
@@ -22,6 +25,7 @@
     <script src="d3_exemption_pie.js"></script>
     <script src="d3_idas_bar_chart.js"></script>
     <script src="d3_pie_generic.js"></script>
+    <script src="single_bar.js"></script>
     <script src="vendors/parallaxify.min.js"></script>
     <!-- <script src="./scripts/fullPageScript.js"></script> -->
 
@@ -251,10 +255,20 @@ $.fn.fullpage.setAllowScrolling(false);
       <section class="section" id="intro">
         <img id="lohud" src="lohud_header.png"></img>
         <h1 class="section_header">Land in New York is worth a combined <strong> $2.8 trillion. </strong></h1>
+
         <div class="property_bar"></div>
+          <!-- <div id="property_bar_container"> -->
+
+            <!-- <canvas id="property_bar"></canvas>
+            <script>single_bar('property_bar', 100, 0)</script> -->
+          <!-- </div> -->
       </section>
       <section class="section" id="intro2">
+
         <img id="lohud_small" src="lohud_header.png"></img>
+        <!-- <div id="property_bar_container_2" class="property_bar_container">
+          <canvas id="property_bar_2"></canvas>
+        </div> -->
         <h2 class="section_header" id="intro2_header">Of that, about two thirds is taxed.</h2>
         <div class="property_bar">
         <div id="screen1"></div>
@@ -269,12 +283,12 @@ $.fn.fullpage.setAllowScrolling(false);
       </section>
       <section class="section">
 
-        <h2 id="lohud_header">The <em>Journal News</em> investigated where that money goes. Swipe down to find out more.</h2>
+        <h2 class="explainer_text">The <em>Journal News</em> investigated where that money goes. Swipe down to find out more.</h2>
     </section>
       <section class="section" id="religious">
         <div class="slide" id="religion_intro">
           <div class="business_elements">
-            <h1 class="header religion">Religious Organizations</h1>
+            <h1 class="header centered">Religious Organizations</h1>
             <img class="icon negative religious" src="prayer_not_free.png"></img>
           </div>
         </div>
@@ -285,14 +299,15 @@ $.fn.fullpage.setAllowScrolling(false);
         </div> -->
         <div class="slide">
               <!-- <h1>Religious Organizations</h1> -->
-            <img class = "header image_header" src="rockland_county.png"></img>
+
+            <img class = "header image_header small" src="rockland_county.png"></img>
             <h2 class="explainer_text">Ramapo, New York, has an extremely high concentration of synagogues and Yeshivas.<br><br>
                 <!-- These organizations can apply for religious exemptions on their land.<br><br>
                 But even when their applications are rejected, they can keep reapplying.</h2> -->
         </div>
         <div class="slide">
             <div>
-              <h2 class="religion_intro second">
+              <h2 class="explainer_text">
                 These religious organizations can apply to pay no property taxes.<br><br>
                 But even when Ramapo rejects an application, religious groups can keep appealing.</h2>
             </div>
@@ -307,12 +322,12 @@ $.fn.fullpage.setAllowScrolling(false);
         </div>
         <div class="slide">
           <div class="odometer_slide">
-            <h1>That meant that</h1>
+            <h1 class=explainer_text>That meant that</h1>
                 <div class="odometer_and_dollar">
                   <div class="odometer_and_dollar">$</div>
                   <div class="odometer_and_dollar" id="first_dollar_figure"></div>
                 </div>
-            <h1>in land would be taxed.</h1>
+            <h1 class=explainer_text>in land would be taxed.</h1>
           </div>
         </div>
         <div class="slide">
@@ -342,7 +357,7 @@ $.fn.fullpage.setAllowScrolling(false);
       <section class="section">
         <div class="slide">
           <div class="business_elements">
-            <h1 class="header">Businesses</h1>
+            <h1 class="header centered">Businesses</h1>
             <img class="icon negative business_image" src="business.png"></img>
           </div>
         </div>
@@ -356,7 +371,9 @@ $.fn.fullpage.setAllowScrolling(false);
       </div>
       <div class="slide">
          <h2 class="explainer_text">Putting their effective tax rate at under 1%</h2>
-         <canvas id="exemption_pie"></canvas>
+         <div class="pie_chart_container">
+           <canvas id="exemption_pie"></canvas>
+         </div>
      </div>
        <div class="slide">
          <!-- <div class="header small_header explainers"> -->
@@ -372,7 +389,7 @@ $.fn.fullpage.setAllowScrolling(false);
             <h1 class = "explainer_text">The idea is that businesses bring jobs, and so they get a break.</h1> -->
         </div>
           <div class="slide">
-            <h2 class = "explainer_text ida_chart_text">Statewide, this untaxed land's value has tripled to $33 billion since 1999.</h2>
+            <h2 class = "explainer_text ida_chart_text">Statewide, this untaxed land's value has tripled to $34 billion since 1999.</h2>
               <svg id="idas_chart">
           </div>
           <div class="slide">
@@ -407,8 +424,8 @@ $.fn.fullpage.setAllowScrolling(false);
       <section class="section" class="public_land_section">
         <div class="slide">
           <div class="business_elements hospital">
-            <h1 class="header">Public Land</h1>
-            <img class="icon" src="public_land_icon.png"></img>
+            <h1 class="header centered">Public Land</h1>
+            <img class="icon public_land" src="public_land_icon.png"></img>
           </div>
         </div>
         <div class="slide park_slide">
@@ -416,7 +433,7 @@ $.fn.fullpage.setAllowScrolling(false);
           <!-- <img src="new_york.png" id="new_york_image"></img> -->
         </div>
         <div class="slide park_slide_bw">
-          <img src="new_york_counties.png" class="header image_header" id="new_york_counties"></img>
+          <img src="new_york_counties.png" class="header image_header small" id="new_york_counties"></img>
           <h1 class="header image_header">The state pays its counties taxes on that land.</h1>
 
         </div>
@@ -432,9 +449,11 @@ $.fn.fullpage.setAllowScrolling(false);
         </div>
         <div class="slide public_land_section">
           <h2 class="explainer_text">The state pays them</h2>
-          <div class="odometer_and_dollar millions_container">
-            <div class="odometer_and_dollar millions">$</div>
-            <div class="odometer_and_dollar millions" id="third_dollar_figure"></div>
+          <div class="odometer_slide">
+            <div class="odometer_and_dollar millions_container third">
+              <div class="odometer_and_dollar millions">$</div>
+              <div class="odometer_and_dollar millions" id="third_dollar_figure"></div>
+            </div>
           </div>
            <h2 class="explainer_text">in town, county, and school taxes.</h2>
         </div>
@@ -460,17 +479,19 @@ $.fn.fullpage.setAllowScrolling(false);
       <section class="section" class="public_land_section">
         <div class="slide">
           <div class="business_elements hospital">
-            <h1 class="header">Universities</h1>
-            <img class="icon negative" src="university_icon.png"></img>
+            <h1 class="header centered">Universities</h1>
+            <img class="icon negative universities" src="university_icon.png"></img>
           </div>
         </div>
           <div class="slide">
             <h2 class="explainer_text">Brockport is a small village in Monroe County.</h2>
-            <img src="brockfort.svg" id="brockfort_image"></img>
+            <img src="brockfort.svg" id="brockport_image"></img>
           </div>
         <div class="slide">
           <h2 class="explainer_text">65% of the village's land is owned by the College at Brockport.</h2>
-          <canvas id="brockfort_graph"></canvas>
+            <div class="pie_chart_container">
+              <canvas id="brockfort_graph"></canvas>
+            </div>
         </div>
         <div class="slide">
           <h2 class="explainer_text">The college doesn't have to pay taxes on the land because it is an educational institution.</h2>
@@ -480,11 +501,15 @@ $.fn.fullpage.setAllowScrolling(false);
         </div>
         <div class="slide">
           <h2 class="explainer_text">Brockport has a $5 million annual budget.</h2>
-          <canvas id="brockfort_budget_graph"></canvas>
+          <div class="pie_chart_container">
+            <canvas id="brockfort_budget_graph"></canvas>
+          </div>
         </div>
         <div class="slide">
           <h2 class="explainer_text">$1.3 million of that goes to its police force.</h2>
-          <canvas id="brockfort_police_graph"></canvas>
+          <div class="pie_chart_container">
+            <canvas id="brockfort_police_graph"></canvas>
+          </div>
         </div>
         <div class="slide quote_slide varrenti">
           <div class="quote blackman">
@@ -495,9 +520,11 @@ $.fn.fullpage.setAllowScrolling(false);
           <h2 class="explainer_text">Yet the college doesn't pay for the force. Brockport residents do.</h2>
         </div>
         <div class="slide quote_slide">
-          <div class="quote blackman">
-          <h2>"This has so much to do with our high taxes. If the college were paying into our tax levy, our rate of $11.87 would go down to $4.30"<br> <h3>&nbsp;&nbsp;&nbsp;&nbsp;Margary Blackman<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Brockport mayor</h3> </h2>
-          <!-- <img src="new_york.png" id="new_york_image"></img> -->
+          <div class="desktop_quote_slide blackman">
+            <div class="quote blackman">
+            <h2>"This has so much to do with our high taxes. If the college were paying into our tax levy, our rate of $11.87 would go down to $4.30"<br> <h3>&nbsp;&nbsp;&nbsp;&nbsp;Margary Blackman<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Brockport mayor</h3> </h2>
+            <!-- <img src="new_york.png" id="new_york_image"></img> -->
+          </div>
         </div>
         </div>
       </section>

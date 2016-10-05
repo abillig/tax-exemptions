@@ -1,4 +1,4 @@
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (-webkit-min-device-piexel-ratio: 1){
+@media only screen and (min-device-width : 768px) and (max-device-width : 1025px) and (-webkit-min-device-piexel-ratio: 1){
 
   #westchester_image{
     zoom: 30%;
@@ -7,5 +7,20 @@
     margin-left: 30%;
     /*margin-left: 22%;*/
   }
+
+  .icon.negative.religious{
+    width: 100%;
+    margin-left: 25%;
+    margin-top: 15%;
+  }
+
+
+
+  .icon.negative.business_image{
+    width: 100%;
+    margin-left: 20%;
+    margin-top: 6%;
+  }
+
 
 }

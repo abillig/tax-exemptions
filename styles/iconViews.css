@@ -1,0 +1,27 @@
+.icon { width: 60%;
+  margin: 0 auto;
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+.icon.header_image { width: 60%;
+  margin: 0 auto;
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+.icon.negative{
+  -webkit-filter: invert(1);
+filter: invert(1);
+}
+
+
+.icon.negative.religious{
+  width: 25%;
+  margin-left: 37%;
+}
+
+.icon.negative.business_image, .icon.public_land, .icon.negative.universities{
+  width: 25%;
+  margin-left: 38%;
+}

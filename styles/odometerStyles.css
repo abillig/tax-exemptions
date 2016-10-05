@@ -1,0 +1,30 @@
+#second_odometer_slide{
+  margin-bottom: 5%;
+}
+
+.odometer_slide{
+  text-align: center;
+  color: white;
+}
+
+.odometer_and_dollar{
+  font-size: 70px;
+  display: inline-block;
+  /*position: absolute;*/
+}
+
+.odometer_and_dollar.millions{
+  font-size: 50px;
+  display: inline-block;
+  /*position: absolute;*/
+}
+
+.odometer_and_dollar.millions_container{
+  margin-left: 10%;
+  /*position: absolute;*/
+}
+
+.odometer_and_dollar.millions_container.zero{
+  margin-left: 25%;
+  /*position: absolute;*/
+}

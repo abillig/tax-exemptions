@@ -1,14 +1,16 @@
 #idas_chart {
-  height: 400px;
-  width: 600px;
-  margin-left: 3%;
-  margin-top: 40%
+  height: 300px;
+  width: 50%;
+  margin-left: 40%;
+  /*margin-right: 25%;*/
+  margin-top: 40%;
 }
 
 #religion_chart{
-  height: 400px;
-  width: 600px;
-  margin-left: 3%;
+  height: 300px;
+  width: 95%;
+  margin-left: 0%;
+  margin-top: 0%;
 }
 
 .axis path,
@@ -32,4 +34,13 @@ svg text {
   svg text {
     font-size: 13px;
   }
+
+  #idas_chart {
+    height: 300px;
+    width: 100%;
+    margin-left: 2%;
+    /*margin-right: 25%;*/
+    margin-top: 40%;
+  }
+
 }

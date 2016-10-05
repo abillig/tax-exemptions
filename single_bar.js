@@ -1,45 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Testing Pie Chart</title>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
-    <style type="text/css">
-        .slice text {
-            font-size: 16pt;
-            font-family: Arial;
-        }
 
-				#one {
-					width: 800px;
-					margin-left: -40%;
-					/*height: 10px;*/
-					/*border: 1px black;*/
-					/*position: relative;*/
-				}
-
-
-    </style>
-  </head>
-  <body>
-		<div id="one">
-			<canvas id="bar-chart"></canvas>
-			<!-- <div>Hello</div> -->
-		<div>
-		<script>
-	// 	var numberWithCommas = function(x) {
-  //   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  // };
-
-var exempt = [67];
-var nonexempt = [33];
+var single_bar = function single_bar(element, value1, value2){
+var exempt = [value1];
+var nonexempt = [value2];
 var dates = [];
 
 // Chart.defaults.global.elements.rectangle.backgroundColor = '#FF0000';
 
-var bar_ctx = document.getElementById('bar-chart');
+var bar_ctx = document.getElementById(element);
 var bar_chart = new Chart(bar_ctx, {
     type: 'bar',
+    responsive: true,
+   maintainAspectRatio: false,
     data: {
         labels: dates,
         datasets: [
@@ -70,7 +41,7 @@ var bar_chart = new Chart(bar_ctx, {
         //  },
         scales: {
           xAxes: [{
-						barThickness: 50,
+						// barThickness: 100%,
           display: false,
           	stacked: true,
             gridLines: { display: false },
@@ -82,10 +53,7 @@ var bar_chart = new Chart(bar_ctx, {
             }],
         }, // scales
         legend: {display: false}
-    } // options
+    } // options,
    }
-);
-</script>
-
-  </body>
-</html>
+)
+};
