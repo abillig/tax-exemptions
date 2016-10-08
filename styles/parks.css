@@ -1,11 +1,11 @@
 .slide.park_slide{
-  background: url('../Letchworth_State_Park.jpeg') no-repeat center / cover;
+  background: url('../assets/Letchworth_State_Park.jpeg') no-repeat center / cover;
   /*opacity: .5;*/
   z-index: -1;
 }
 
 .slide.park_slide_bw{
-  background: url('../Letchworth_State_Park.jpeg') no-repeat center / cover;
+  background: url('../assets/Letchworth_State_Park.jpeg') no-repeat center / cover;
   /*opacity: .5;*/
   z-index: -1;
 }
@@ -19,12 +19,32 @@
 }
 
 .slide.sing_sing{
-  background: url('../Sing_Sing09.jpg') no-repeat center / cover;
+  background: url('../assets/Sing_Sing09.jpg') no-repeat center / cover;
   color: white;
 }
 
 .slide.taconic_womens{
-  background: url('../taconic_womens_copyrighted.jpg') no-repeat center / cover;
+  background: url('../assets/Bedford_Hills_Prison02.jpg') no-repeat center / cover;
+  /*background: url('../taconic_womens_copyrighted.jpg') no-repeat center / cover;*/
+}
+
+.slide.aqueduct_1{
+  background: url('../assets/Croton-aqueduct-en.png') no-repeat center / cover;
+  /*background: url('../taconic_womens_copyrighted.jpg') no-repeat center / cover;*/
+}
+
+.slide.aqueduct_2{
+  background: url('../assets/Croton-aqueduct-en2.png') no-repeat center / cover;
+  /*background: url('../taconic_womens_copyrighted.jpg') no-repeat center / cover;*/
+}
+
+.aqueduct_text{
+  background: rgba(255, 255, 255, .8);
+  width: 70%;
+  padding: 3%;
+  margin: 0 auto;
+  border-radius: 2%;
+  margin-top: 110%;
 }
 
 #new_york_image{
@@ -33,22 +53,29 @@
 }
 
 #new_york_counties{
-  margin-top: -20%;
-  margin-bottom: 10%;
+  margin-top: 0%;
+  margin-bottom: 5%;
 }
 
-#putnam_parks_image{
+/*#putnam_parks_image{
   zoom: 90%;
-  /*margin-left: 4%;*/
-}
+}*/
 
 #putnam_rockland{
   margin-top: -20%;
 }
 
-#rockland_parks_image{
+/*#rockland_parks_image{
   zoom: 22%;
   margin-left: -5%;
+}*/
+
+#putnam_rockland_image{
+  /*zoom: 80%;*/
+width: 40%;
+margin-top: 20%;
+  margin-left: 25%;
+  margin-bottom: -5%;
 }
 
 
@@ -83,7 +110,15 @@
 #westchester_image{
   zoom: 30%;
   /*margin-left: 22%;*/
-  margin-top: -50%;
+  margin-top: -20%;
+}
+
+#putnam_rockland_image{
+  /*zoom: 80%;*/
+width: 70%;
+margin-top: -20%;
+  margin-left: 15%;
+  margin-bottom: -5%;
 }
 
 }

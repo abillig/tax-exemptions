@@ -1,0 +1,38 @@
+#screen, #split_screen_1, #split_screen_2{background:black; color:white; padding:10px; overflow:hidden; position:relative;
+width:80%;
+    height:70%;
+    margin: 0 auto;
+  }
+.intro_content{
+    z-index:9;
+    position:relative;
+}
+.intro_fill{
+    z-index;1;
+    width:100%;
+    height:0%;
+    position:absolute;
+    background:#4aa1cc;
+    left:0px;
+    bottom:0px;
+}
+
+.first_division{
+  z-index;1;
+  width:100%;
+  height:0%;
+  position:absolute;
+  background: -webkit-linear-gradient(top,#cc4a5d, #cc4a5d 66%, transparent 66%, transparent 34%, #4aa1cc 34%);
+  left:0px;
+  bottom:0px;
+}
+
+.second_division{
+  z-index;1;
+  width:100%;
+  height:0%;
+  position:absolute;
+  background: -webkit-linear-gradient(top, #cc4a5d, #cc4a5d 34%, transparent 34%, #4aa1cc 0%);
+  left:0px;
+  bottom:0px;
+}

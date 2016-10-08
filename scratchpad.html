@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+   <head>
+     <style>
+      #img{
+        zoom: 40%;
+        filter: invert(100%);
+      }
+     </style>
+      <title>change picture</title>
+      <script type = "text/javascript">
+          function displayNextImage() {
+              x = (x === images.length - 1) ? 0 : x + 1;
+              document.getElementById("img").src = images[x][1];
+              document.getElementById("text").innerHTML = images[x][0];
+          }
+
+          // function displayPreviousImage() {
+          //     x = (x <= 0) ? images.length - 1 : x - 1;
+          //     document.getElementById("img").src = images[x];
+          // }
+
+          function startTimer() {
+              setInterval(displayNextImage, 1500);
+          }
+
+          var images = [["The Cayman Islands", "assets/cayman_islands.png"], ["Aruba", "assets/aruba.png"], ["Panama", "assets/panama.png"], ["Iceland", "assets/iceland.png"], ["Greenland", "assets/greenland.png"]], x = -1;
+          // images[0] = "assets/hospital_icon.png";
+          // images[1] = "assets/farrar.jpeg";
+          // images[2] = "assets/public_land_icon.png";
+      </script>
+   </head>
+
+   <body onload = "startTimer()">
+       <img id="img" src="assets/farrar.jpeg"/>
+       <h3 id="text">hi<h3>
+       <!-- <button type="button" onclick="displayPreviousImage()">Previous</button>
+       <button type="button" onclick="displayNextImage()">Next</button> -->
+   </body>
+</html>

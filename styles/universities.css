@@ -14,7 +14,7 @@
 .desktop_quote_slide.blackman {
   width: 50;
   height: 80%;
-  background: url('../blackman.jpg') no-repeat center ;
+  background: url('../assets/blackman.jpg') no-repeat center ;
   border-radius: 5%;
 }
 
@@ -59,15 +59,15 @@
 }
 
 .slide.quote_slide{
-  background: url('../blackman.jpg') no-repeat center / cover;
+  background: url('../assets/blackman.jpg') no-repeat center / cover;
 }
 
 .slide.quote_slide.varrenti{
-  background: url('../varrenti.jpg') no-repeat center / cover;
+  background: url('../assets/varrenti.jpg') no-repeat center / cover;
 }
 
 .slide.quote_slide.farrar{
-  background: url('../farrar.jpeg') no-repeat center / cover;
+  background: url('../assets/farrar.jpeg') no-repeat center / cover;
 }
 
 .quote{
@@ -83,7 +83,7 @@
 }
 
 .quote.blackman{
-  margin-top: 90%;
+  margin-top: 140%;
 }
 
 .quote.farrar{

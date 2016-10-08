@@ -20,11 +20,12 @@
 }
 
 .odometer_and_dollar.millions_container{
-  margin-left: 10%;
+  margin-left: 0%;
   /*position: absolute;*/
 }
 
 .odometer_and_dollar.millions_container.zero{
-  margin-left: 25%;
+  margin-left: 40%;
+  /*margin-bottom: 10%;*/
   /*position: absolute;*/
 }

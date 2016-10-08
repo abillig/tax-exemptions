@@ -1,51 +1,21 @@
 
 
-
-#screen, #split_screen_1, #split_screen_2{background:black; color:white; padding:10px; overflow:hidden; position:relative;
-width:80%;
-    height:70%;
-    margin: 0 auto;
-  }
-.intro_content{
-    z-index:9;
-    position:relative;
-}
-.intro_fill{
-    z-index;1;
-    width:100%;
-    height:0%;
-    position:absolute;
-    background:#4aa1cc;
-    left:0px;
-    bottom:0px;
-}
-
-.first_division{
-  z-index;1;
-  width:100%;
-  height:0%;
-  position:absolute;
-  background: -webkit-linear-gradient(top,#cc4a5d, #cc4a5d 66%, transparent 66%, transparent 34%, #4aa1cc 34%);
-  left:0px;
-  bottom:0px;
-}
-
-.second_division{
-  z-index;1;
-  width:100%;
-  height:0%;
-  position:absolute;
-  background: -webkit-linear-gradient(top, #cc4a5d, #cc4a5d 34%, transparent 34%, #4aa1cc 0%);
-  left:0px;
-  bottom:0px;
-}
-
   .explainer_text{
     color: white;
     margin-right: 15%;
     margin-left: 15%;
     text-align: center;
     font-size: 4.0vh;
+  }
+
+  .explainer_text.small{
+    font-size: 3.0vh;
+  }
+
+  .explainer_text.small{
+    text-align: left;
+    font-size: 3.0vh;
+    /*margin-bottom: 90%; */
   }
 
   .ida_chart_text{
@@ -155,53 +125,24 @@ width:80%;
   }
 
   .header.image_header.small{
-    width: 50%;
+    width: 40%;
     /*top: 40; */
     margin-right: 25%;
     margin-left: 25%;
-    /*margin-top: 10%; */
+    /*margin: 0 auto;*/
+  }
+
+  .header.image_header.small_text{
+    width: 90%;
+    /*top: 40; */
+    margin-right: 5%;
+    margin-left: 5%;
+    font-size: 4.0vh;
     /*margin: 0 auto;*/
   }
 
   .image_header.second{
     width: 60%;
-  }
-
-  #intro2_header{
-    margin-top: 56%;
-  }
-
-  .property_bar{
-    /*background-color: #95b6bb;*/
-    background-color: #4aa1cc;
-    height: 60%;
-    width: 10%;
-    margin-left: 10%;
-    margin-top: 20%;
-    padding-bottom: -10%;
-    position: relative;
-    z-index: 0;
-  }
-
-  #screen1{
-    color: white;
-    z-index: 1;
-    position: fixed;
-    filter: alpha(opacity=50);
-    background-color:rgba(256, 256, 256, 0.6);
-    width: 10%;
-    height: 20%;
-  }
-
-  #screen2{
-    color: white;
-    z-index: 1;
-    position: fixed;
-    filter: alpha(opacity=50);
-    background-color:rgba(256, 256, 256, 0.6);
-    width: 10%;
-    height: 40%;
-    margin-top: 35.5%;
   }
 
   #religion_homepage{
@@ -222,25 +163,6 @@ width:80%;
     color: white;
     margin-right: 10%;
     margin-left: 10%;
-  }
-
-
-  #lohud{
-    width: 40%;
-    margin-left: 10%;
-    margin-top: 0%;
-  }
-
-  #lohud_small{
-    width: 40%;
-    margin-left: 10%;
-    margin-top: 0%;
-  }
-
-  #property_bar{
-    /*width: 100%;*/
-    /*height: 100%;*/
-    /*margin-left: -19.3%;*/
   }
 
   /*canvas{
@@ -351,11 +273,23 @@ svg{
 }
 
 .avalon_slide{
-  background: url('avalon.jpg') no-repeat center / cover;
+  background: url('../assets/avalon.jpg') no-repeat center / cover;
 }
 
 #avalon{
   display: none;
   opacity: .5;
   z-index: -1;
+}
+
+#religion_states_mobile_container{
+  display: none;
+}
+
+#country{
+  width: 40%;
+  margin-left: 30%; 
+  /*margin-left: 50%;
+  margin-bottom: 30%;*/
+  filter: invert(100%);
 }

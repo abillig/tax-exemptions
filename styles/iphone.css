@@ -1,5 +1,13 @@
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 
+  #screen, #split_screen_1, #split_screen_2{background:black; color:white; padding:10px; overflow:hidden; position:relative;
+  width:60%;
+      height:60%;
+      margin: 0 auto;
+      margin-top: 10%;
+      margin-bottom: 20%;
+    }
+
     .section_header.centered {
       text-align: left;
       font-size: 3.5vh;
@@ -49,7 +57,7 @@
 
     .header.image_header.small{
       width: 70%;
-      margin-left: 20%;
+      margin: 0 auto;
       }
 
     #lohud{
@@ -149,6 +157,47 @@ margin-left: 17%;
     .explainer_text.ida_chart_text.religion{
       /*margin-top: -10%;*/
       margin-bottom: 10%;
+    }
+
+    .odometer_and_dollar.millions_container.zero{
+      margin-left: 13%;
+      margin-bottom: 10%;
+      /*position: absolute;*/
+    }
+
+    .header.image_header.counties{
+      margin: 0 auto;
+    }
+
+    .header.image_header.small{
+      /*width: 70%;*/
+      /*top: 40; */
+      margin-right: 35%;
+      margin-left: 25%;
+      /*margin-top: 10%; */
+      /*margin: 0 auto;*/
+    }
+
+    #new_york_counties{
+      margin-left: 15%;
+      margin-top: -20%;
+      margin-bottom: 5%;
+    }
+
+    #religion_states_desktop_container{
+      display: none;
+    }
+    #religion_states_mobile_container{
+      margin-left: 10%;
+      display: block;
+    }
+
+    #country{
+      zoom: 40%;
+      width: 70%;
+      margin-left: 15%;
+      margin-bottom: 30%;
+      filter: invert(100%);
     }
 
 

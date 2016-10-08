@@ -1,32 +1,34 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="app.css">
+    <link rel="stylesheet" type="text/css" href="styles/app.css">
     <link rel="stylesheet" type="text/css" href="d3.css">
     <link rel="stylesheet" type="text/css" href="jquery.fullPage.css" />
     <link rel="stylesheet" type="text/css" href="styles/fullPageStyles.css" />
     <link rel="stylesheet" type="text/css" href="styles/desktop.css" />
     <link rel="stylesheet" type="text/css" href="styles/parks.css" />
+    <link rel="stylesheet" type="text/css" href="styles/intro.css" />
     <link rel="stylesheet" type="text/css" href="styles/odometerStyles.css" />
     <link rel="stylesheet" type="text/css" href="styles/iconViews.css" />
     <link rel="stylesheet" type="text/css" href="styles/universities.css" />
     <link rel="stylesheet" type="text/css" href="styles/iphone.css" />
     <link rel="stylesheet" type="text/css" href="styles/ipad.css" />
     <link rel="stylesheet" type="text/css" href="styles/arrow.css" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.3/jquery.fullPage.css" rel="stylesheet">
-
+    <script src="scripts/religion_states_chart.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="blockToggle.js"></script>
     <script src="blockMaker.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
-    <script src="d3_grid.js"></script>
-    <script src="d3_exemption_pie.js"></script>
-    <script src="d3_idas_bar_chart.js"></script>
-    <script src="d3_pie_generic.js"></script>
-    <script src="single_bar.js"></script>
+    <script src="scripts/d3_grid.js"></script>
+    <script src="scripts/d3_exemption_pie.js"></script>
+    <script src="scripts/d3_idas_bar_chart.js"></script>
+    <script src="scripts/d3_pie_generic.js"></script>
+    <script src="scripts/image_swapper.js"></script>
     <script src="vendors/parallaxify.min.js"></script>
     <!-- <script src="./scripts/fullPageScript.js"></script> -->
 
@@ -54,12 +56,12 @@ $(document).ready(function() {
           //Navigation
           menu: '#menu',
           lockAnchors: false,
-          anchors:['introduction', 'introduction2', 'introduction3', 'four', 'religion', 'idas', 'fourthSection', 'fifthSection', 'universities'],
+          anchors:['introduction', 'introduction2', 'introduction3', 'four', 'idas', 'parks', 'universities', 'religion', 'hospitals'],
           navigation: false,
           navigationPosition: 'right',
           // navigationTooltips: ['firstSlide', 'secondSlide'],
           showActiveTooltip: false,
-          slidesNavigation: true,
+          slidesNavigation: false,
           slidesNavPosition: 'bottom',
           responsive: true,
 
@@ -96,7 +98,7 @@ $(document).ready(function() {
           //Design
           controlArrows: true,
           verticalCentered: true,
-          sectionsColor : ['#000', '#000', '#000', '#000', '#000', '#000', '#fff', '#000', '#000'],
+          sectionsColor : ['#000', '#000', '#000', '#000', '#000', '#000', '#000', '#000', '#000'],
           // paddingTop: '3em',
           // paddingBottom: '10px',
           // fixedElements: '#header, .footer',
@@ -111,6 +113,7 @@ $(document).ready(function() {
           //events
           onLeave: function(index, nextIndex, direction){},
           afterLoad: function(anchorLink, index){
+            $('.fp-controlArrow.fp-next').show()
             console.log('anchorLink ===' + anchorLink + '&& index ===' + index)
             if(anchorLink === 'introduction' && index === 1){
               $('.intro_fill').animate({ height: '100%' }, {
@@ -131,7 +134,16 @@ $(document).ready(function() {
           afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
 
 
-            // console.log('anchorLink ===' + anchorLink + '&& index ===' + index + ' && slideIndex ===' + slideIndex)
+            console.log('anchorLink ===' + anchorLink + '&& index ===' + index + ' && slideIndex ===' + slideIndex)
+
+            if(anchorLink ==='religion' && slideIndex ===1) {
+              states_religion_mobile()
+              states_religion_desktop()
+            }
+
+            if(anchorLink ==='hospitals' && slideIndex ===2) {
+              hospitals_bar()
+            }
 
             if(slideIndex === 0){
               $('.fp-controlArrow.fp-prev').hide()
@@ -149,31 +161,37 @@ $(document).ready(function() {
             }
 
 
-            if(anchorLink ==="universities"&& index ===9 && slideIndex ===5){
+            if(anchorLink ==="universities"&& index ===7 && slideIndex ===5){
               pieChart("brockfort_budget_graph", [100, 0], {display: false}, ["#2779aa",
               "#a74225"])
-            } else if (anchorLink ==="universities"&& index ===9 && slideIndex ===6){
+            } else if (anchorLink ==="universities"&& index ===7 && slideIndex ===6){
               pieChart("brockfort_police_graph", [26, 74], ["Public Safety"], ["#a74225", "#2779aa"])
             }
 
-            if (anchorLink === "idas" && index === 6 && slideIndex === 3){
+            if (anchorLink === "idas" && index === 5 && slideIndex === 3){
               pieChart("exemption_pie", [99, 1], {display: false}, ["#2779aa", "#a74225"])
             }
 
-            if(anchorLink == "universities" && index == 9 && slideIndex == 2){
+            if(anchorLink == "universities" && index == 7 && slideIndex == 2){
               pieChart("brockfort_graph", [65, 35], ["SUNY", "Non-SUNY"], ["#a74225", "#2779aa"])
             }
 
-            if(anchorLink == "religion" && index == 5 && slideIndex == 7){
+            if(anchorLink == "religion" && slideIndex == 2){
               // $('.fp-controlArrow.fp-prev').css("zoom", "50%")
               // $('.fp-controlArrow.fp-next').css("zoom", "50%")
               religion_chart()
+              // $('explainer_text small left').css('margin-bottom', '0px')
             }
 
-            if(anchorLink == "idas" && index == 6 && slideIndex == 6){
+            if(anchorLink == "idas" && index == 5 && slideIndex == 6){
               // $('.fp-controlArrow.fp-prev').css("zoom", "50%")
               // $('.fp-controlArrow.fp-next').css("zoom", "50%")
               idas_chart()
+            }
+
+            if(anchorLink ==='parks'&& index ===6 && slideIndex ===13 || anchorLink==='idas' && slideIndex===9){
+              $('.fp-controlArrow.fp-prev').hide()
+              $('.fp-controlArrow.fp-next').hide()
             }
           },
           onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){
@@ -193,7 +211,7 @@ $(document).ready(function() {
             //   idas_chart()
             // }
 
-            if (index === 5 && slideIndex === 3){
+            if (index === 8 && slideIndex === 3){
             var el = document.querySelector('#first_dollar_figure');
               od = new Odometer({
                 el: el,
@@ -204,7 +222,7 @@ $(document).ready(function() {
               el.innerHTML = 83000
               }
 
-            if (index === 5 && slideIndex === 5){
+            if (index === 8 && slideIndex === 5){
             var el = document.querySelector('#second_dollar_figure');
               od = new Odometer({
                 el: el,
@@ -216,29 +234,36 @@ $(document).ready(function() {
               }
 
 
-            if (index === 8 && slideIndex === 4){
+            if (index === 6 && slideIndex === 4){
             var el = document.querySelector('#third_dollar_figure');
               od = new Odometer({
                 el: el,
                 value: 10000000,
               });
-              od.update(30000000)
+              od.update(42000000)
               // or
-              el.innerHTML = 30000000
+              el.innerHTML = 42000000
               }
 
-            if (index === 8 && slideIndex === 6){
+            if (index === 6 && slideIndex === 6){
             var el = document.querySelector('#fourth_dollar_figure');
               od = new Odometer({
                 el: el,
                 value: 30000000,
               });
-              od.update(00000000)
+              od.update(1000000)
               // or
-              el.innerHTML = 00000000
+              el.innerHTML = 1000000
               }
+
+              if(anchorLink ==='parks'&& index ===6 && slideIndex ===13){
+                $('.fp-controlArrow.fp-prev').show()
+                $('.fp-controlArrow.fp-next').show()
+              }
+
           }
       });
+      startTimer();
       // $(function(){exemption_pie()})
 });
 
@@ -271,7 +296,7 @@ $.fn.fullpage.setAllowScrolling(false);
 
       <!-- </nav> -->
       <section class="section" id="intro">
-        <img id="lohud" src="lohud_header.png"></img>
+        <img id="lohud" src="assets/lohud_header.png"></img>
         <div id='screen'>
             <div class="intro_fill"></div>
             <div class="intro_content">
@@ -296,11 +321,11 @@ $.fn.fullpage.setAllowScrolling(false);
       </section>
       <section class="section" id="intro2">
 
-        <img id="lohud_small" src="lohud_header.png"></img>
+        <img id="lohud_small" src="assets/lohud_header.png"></img>
         <div id='split_screen_1'>
             <div class="first_division"></div>
             <div class="intro_content">
-              <h2 class="section_header centered mid_upper">Of that, about two thirds is taxed.</h2>
+              <h2 class="section_header centered mid_upper">Two thirds of that land is taxed.</h2>
             </div>
         </div>
         <svg class="arrows">
@@ -318,7 +343,7 @@ $.fn.fullpage.setAllowScrolling(false);
       </div> -->
     </section>
       <section class="section" id="intro3">
-        <img id="lohud_small" src="lohud_header.png"></img>
+        <img id="lohud_small" src="assets/lohud_header.png"></img>
         <div id='split_screen_2'>
             <div class="second_division"></div>
             <div class="intro_content">
@@ -339,81 +364,11 @@ $.fn.fullpage.setAllowScrolling(false);
 
         <h2 class="explainer_text">The <em>Journal News</em> investigated where that money goes. <br><br>Swipe down to find out more.</h2>
     </section>
-      <section class="section" id="religious">
-        <div class="slide" id="religion_intro">
-          <div class="business_elements">
-            <h1 class="header centered">Religious Organizations</h1>
-            <img class="icon negative religious" src="prayer_not_free.png"></img>
-          </div>
-        </div>
-        <!-- <div class="slide" id="religion_homepage">
-          <div>
-            <div id="religion_header">Religious Organizations</div>
-          </div>
-        </div> -->
-        <div class="slide">
-              <!-- <h1>Religious Organizations</h1> -->
-
-            <img class = "header image_header small" src="rockland_county.png"></img>
-            <h2 class="explainer_text">Ramapo, New York, has an extremely high concentration of synagogues and Yeshivas.<br><br>
-                <!-- These organizations can apply for religious exemptions on their land.<br><br>
-                But even when their applications are rejected, they can keep reapplying.</h2> -->
-        </div>
-        <div class="slide">
-            <div>
-              <h2 class="explainer_text">
-                These religious organizations can apply to pay no property taxes.<br><br>
-                But even when Ramapo rejects an application, religious groups can keep appealing.</h2>
-            </div>
-        </div>
-        <div class="slide">
-          <div class="squares_header" id="first_squares_header"><h1>In 2015, Ramapo rejected 240 religious exemption requests.</h1><div>
-          <div id='squares_container'>
-            <div id="squares" width="200" height="200" data-parallaxify-range-x="100"></div>
-          </div>
-          <!-- <div id="odometer" class="odometer"></div> -->
-            <script>adjustableGrid(0)</script>
-        </div>
-        <div class="slide">
-          <div class="odometer_slide">
-            <h1 class=explainer_text>That meant that</h1>
-                <div class="odometer_and_dollar">
-                  <div class="odometer_and_dollar">$</div>
-                  <div class="odometer_and_dollar" id="first_dollar_figure"></div>
-                </div>
-            <h1 class=explainer_text>in land would be taxed.</h1>
-          </div>
-        </div>
-        <div class="slide">
-          <div id='squares_container'>
-            <div class="squares_header" id="second_squares_header"><h1>But after appeals, 180 of these rejections were reversed.</h1><div>
-            <div id="squares2" width="200" height="200"></div>
-            <script>adjustableGridSecond(99)</script>
-            <!-- <script>setTimeout(function(){
-              odometer.innerHTML = 8300;
-            }, 1000);</script> -->
-          </div>
-        </div>
-        <div class="slide">
-          <div class="odometer_slide" id="second_odometer_slide">
-          <h1 class="explainer_text">The town's taxed land dropped to</h1>
-            <div class="odometer_and_dollar">
-              <div class="odometer_and_dollar">$</div>
-              <div class="odometer_and_dollar" id="second_dollar_figure"></div>
-            </div>
-          </div>
-        </div>
-        <div class="slide">
-          <h2 class = "explainer_text ida_chart_text religion">Statewide, the value of land granted religious exemptions has risen to nearly $26 billion in 2015.</h2>
-            <svg id="religion_chart">
-
-        </div>
-      </section>
       <section class="section">
         <div class="slide">
           <div class="business_elements">
             <h1 class="header centered">Businesses</h1>
-            <img class="icon negative business_image" src="business.png"></img>
+            <img class="icon negative business_image" src="assets/business.png"></img>
           </div>
         </div>
         <div class="slide avalon_slide">
@@ -422,10 +377,10 @@ $.fn.fullpage.setAllowScrolling(false);
        </div>
        <div class="slide avalon_slide">
           <!-- <img id="avalon" src="avalon_emporis_cropped.jpg"></img> -->
-          <h1 class="header image_header second">So the state gave them an exemption on their property taxes.</h1>
+          <h1 class="header image_header second">So they received an exemption on their property taxes.</h1>
       </div>
       <div class="slide">
-         <h2 class="explainer_text">Putting their effective tax rate at under 1%</h2>
+         <h2 class="explainer_text">Putting their effective property tax rate at under 1%</h2>
          <div class="pie_chart_container">
            <canvas id="exemption_pie"></canvas>
          </div>
@@ -456,6 +411,15 @@ $.fn.fullpage.setAllowScrolling(false);
               <h5>Michael Farrar<br>Director of the Authorities Budget Office</h5>
             </div>
           </div>
+          <div class="slide">
+            <div>
+              <svg class="arrows relative">
+      							<!-- <path class="a1" d="M0 0 L30 32 L60 0"></path> -->
+      					<path class="a2" d="M0 20 L30 52 L60 20"></path>
+      					<path class="a3" d="M0 40 L30 72 L60 40"></path>
+      				</svg>
+            </div>
+          </div>
       <!-- <div class="slide">
           <iframe id="ida_iframe" src="https://safe-brushlands-82278.herokuapp.com/locations/317"></iframe>
      </div> -->
@@ -466,7 +430,7 @@ $.fn.fullpage.setAllowScrolling(false);
           </div>
         </div> -->
       </section>
-      <section class="section">
+      <!-- <section class="section">
         <div class="slide" id="religion_intro">
           <div class="business_elements hospital">
             <h1 class="header hospital">Hospitals</h1>
@@ -475,12 +439,12 @@ $.fn.fullpage.setAllowScrolling(false);
         </div>
         <div class="slide">
         </div>
-      </section>
+      </section> -->
       <section class="section" class="public_land_section">
         <div class="slide">
           <div class="business_elements hospital">
             <h1 class="header centered">Public Land</h1>
-            <img class="icon public_land" src="public_land_icon.png"></img>
+            <img class="icon public_land" src="assets/public_land_icon.png"></img>
           </div>
         </div>
         <div class="slide park_slide">
@@ -488,8 +452,8 @@ $.fn.fullpage.setAllowScrolling(false);
           <!-- <img src="new_york.png" id="new_york_image"></img> -->
         </div>
         <div class="slide park_slide_bw">
-          <img src="new_york_counties.png" class="header image_header small" id="new_york_counties"></img>
-          <h1 class="header image_header">The state pays its counties taxes on that land.</h1>
+          <img src="assets/new_york_counties.png" class="header image_header small" id="new_york_counties"></img>
+          <h1 class="header image_header counties">The state pays its counties taxes on the land that they house.</h1>
 
         </div>
         <div class="slide public_land_section">
@@ -497,13 +461,12 @@ $.fn.fullpage.setAllowScrolling(false);
         </div>
         <div class="slide public_land_section">
             <div class="header image_header double" id="putnam_rockland">
-              <img src="putnam_county.png" id="putnam_parks_image"></img>
-              <img src="rockland_county.png" id="rockland_parks_image"></img>
+              <img src="assets/rockland-putnam_county.png" id="putnam_rockland_image"></img>
             </div>
-          <h2 class="explainer_text putnam">Putnam County and Rockland County collect taxes on public land worth <span class="red">$1 billion</span>.</h2>
+          <h2 class="explainer_text putnam">Public land in Putnam and Rockland is worth about <span class="red">$1 billion</span>.</h2>
         </div>
         <div class="slide public_land_section">
-          <h2 class="explainer_text">The state pays them</h2>
+          <h2 class="explainer_text">The state pays these counties about</h2>
           <div class="odometer_slide">
             <div class="odometer_and_dollar millions_container third">
               <div class="odometer_and_dollar millions">$</div>
@@ -513,29 +476,51 @@ $.fn.fullpage.setAllowScrolling(false);
            <h2 class="explainer_text">in town, county, and school taxes.</h2>
         </div>
         <div class="slide public_land_section">
-          <img src="westchester_county.png" class="header image_header" id="westchester_image"></img>
-          <h2 class="explainer_text">Westchester County has <span class="red">$3.7 billion</span> in public lands.</h2>
+          <img src="assets/westchester_county.png" class="header image_header" id="westchester_image"></img>
+          <h2 class="explainer_text">Nearby Westchester County has <span class="red">$3.7 billion</span> in public lands, almost 4 times as much as its neighbors.</h2>
         </div>
         <div class="slide public_land_section">
-          <h2 class="explainer_text">Yet the state pays Westchester</h2>
+          <h2 class="explainer_text">Yet the state only pays Westchester about</h2>
           <div class="odometer_and_dollar millions_container zero">
             <div class="odometer_and_dollar millions">$</div>
             <div class="odometer_and_dollar millions" id="fourth_dollar_figure"></div>
           </div>
           <h2 class="explainer_text">in taxes on that land.</h2>
         </div>
+        <div class="slide">
+          <h1 class="explainer_text">There seems to be little rhyme or reason to where and when the state pays taxes on public land.</h1>
+        </div>
         <div class="slide sing_sing">
           <h1 class="header image_header">New York pays school taxes to Ossining for the Sing Sing prison.</h1>
         </div>
         <div class="slide taconic_womens">
-          <h1 class="header image_header">But none to ____ for the ____ prison.</h1>
+          <h1 class="header image_header">But none to Bedford for the Bedford Hills Correctional Facility.</h1>
+        </div>
+        <div class="slide aqueduct_1">
+          <div class="aqueduct_text">
+            <h1 class="header image_header small_text">It pays taxes on the Croton Aqueduct State Park in Ossining.</h1>
+          </div>
+        </div>
+        <div class="slide aqueduct_2">
+          <div class="aqueduct_text">
+            <h1 class="header image_header small_text">But not the Croton Aqueduct State Park in Greenburgh, Yonkers, and Mount Pleasant.</h1>
+          </div>
+        </div>
+        <div class="slide">
+          <div>
+            <svg class="arrows relative">
+    							<!-- <path class="a1" d="M0 0 L30 32 L60 0"></path> -->
+    					<path class="a2" d="M0 20 L30 52 L60 20"></path>
+    					<path class="a3" d="M0 40 L30 72 L60 40"></path>
+    				</svg>
+          </div>
         </div>
       </section>
       <section class="section" class="public_land_section">
         <div class="slide">
           <div class="business_elements hospital">
             <h1 class="header centered">Universities</h1>
-            <img class="icon negative universities" src="university_icon.png"></img>
+            <img class="icon negative universities" src="assets/university_icon.png"></img>
           </div>
         </div>
           <div class="slide">
@@ -581,6 +566,138 @@ $.fn.fullpage.setAllowScrolling(false);
             <!-- <img src="new_york.png" id="new_york_image"></img> -->
           </div>
         </div>
+        </div>
+        <div class="slide">
+          <div>
+            <svg class="arrows relative">
+    							<!-- <path class="a1" d="M0 0 L30 32 L60 0"></path> -->
+    					<path class="a2" d="M0 20 L30 52 L60 20"></path>
+    					<path class="a3" d="M0 40 L30 72 L60 40"></path>
+    				</svg>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="religious">
+        <div class="slide" id="religion_intro">
+          <div class="business_elements">
+            <h1 class="header centered">Religious Organizations</h1>
+            <img class="icon negative religious" src="assets/prayer_not_free.png"></img>
+          </div>
+        </div>
+        <!-- <div class="slide" id="religion_homepage">
+          <div>
+            <div id="religion_header">Religious Organizations</div>
+          </div>
+        </div> -->
+        <div class="slide">
+            <div id="religion_states_desktop_container">
+              <h1 class="explainer_text">Hello</h1>
+            <canvas id="religion_states_chart"></canvas>
+          </div>
+          <h1 class="explainer_text small left">New York is one of the least religious states in the country, with just 29% of people attending weekly services.</h1>
+          <div id="religion_states_mobile_container">
+            <!-- <h1 class="explainer_text">Hello</h1> -->
+            <canvas id="religion_states_chart_mobile" height="100" width="80"></canvas>
+          </div>
+        </div>
+        <div class="slide">
+          <h2 class = "explainer_text small left">Yet the state gives out millions in property tax exemptions to religious groups. This exempt land's value has risen to nearly $26 billion in 2015.</h2>
+            <svg id="religion_chart">
+
+        </div>
+        <div class="slide">
+              <!-- <h1>Religious Organizations</h1> -->
+
+            <img class = "header image_header small" src="assets/rockland_county.png"></img>
+            <h2 class="explainer_text">Ramapo, New York, has an extremely high concentration of synagogues and Yeshivas.<br><br>
+                <!-- These organizations can apply for religious exemptions on their land.<br><br>
+                But even when their applications are rejected, they can keep reapplying.</h2> -->
+        </div>
+        <div class="slide">
+            <div>
+              <h2 class="explainer_text">
+                Religious groups in New York can apply to pay no property taxes. Ramapo has been flooded with these applications.<br><br>
+                But even when the town rejects an application, religious groups can keep appealing.</h2>
+            </div>
+        </div>
+        <div class="slide">
+          <div class="squares_header" id="first_squares_header"><h1>In 2015, Ramapo rejected 240 religious exemption requests.</h1><div>
+          <div id='squares_container'>
+            <div id="squares" width="200" height="200" data-parallaxify-range-x="100"></div>
+          </div>
+          <!-- <div id="odometer" class="odometer"></div> -->
+            <script>adjustableGrid(0)</script>
+        </div>
+        <div class="slide">
+          <div class="odometer_slide">
+            <h1 class=explainer_text>That meant that</h1>
+                <div class="odometer_and_dollar">
+                  <div class="odometer_and_dollar">$</div>
+                  <div class="odometer_and_dollar" id="first_dollar_figure"></div>
+                </div>
+            <h1 class=explainer_text>in land would be taxed.</h1>
+          </div>
+        </div>
+        <div class="slide">
+          <div id='squares_container'>
+            <div class="squares_header" id="second_squares_header"><h1>But after appeals, 180 of these rejections were reversed.</h1><div>
+            <div id="squares2" width="200" height="200"></div>
+            <script>adjustableGridSecond(99)</script>
+            <!-- <script>setTimeout(function(){
+              odometer.innerHTML = 8300;
+            }, 1000);</script> -->
+          </div>
+        </div>
+        <div class="slide">
+          <div class="odometer_slide" id="second_odometer_slide">
+          <h1 class="explainer_text">The town's taxed land dropped to</h1>
+            <div class="odometer_and_dollar">
+              <div class="odometer_and_dollar">$</div>
+              <div class="odometer_and_dollar" id="second_dollar_figure"></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide">
+          <h2 class = "explainer_text ida_chart_text religion">Statewide, the value of land granted religious exemptions has risen to nearly $26 billion in 2015.</h2>
+            <svg id="religion_chart">
+
+        </div>
+        <div class="slide">
+          <div>
+            <svg class="arrows relative">
+    							<!-- <path class="a1" d="M0 0 L30 32 L60 0"></path> -->
+    					<path class="a2" d="M0 20 L30 52 L60 20"></path>
+    					<path class="a3" d="M0 40 L30 72 L60 40"></path>
+    				</svg>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="slide" id="religion_intro">
+          <div class="business_elements hospital">
+            <h1 class="header hospital">Hospitals</h1>
+            <img class="icon negative" src="assets/hospital_icon.png"></img>
+          </div>
+        </div>
+        <div class="slide">
+          <h2 class="explainer_text">Nonprofit hospitals in New York collect exemptions on their property.</h2>
+        </div>
+        <div class="slide">
+          <h2 class = "explainer_text small left">Hospitals’ tax-exempt property in New York increased in value from $13.1 billion to $22.7 billion over the past 16 years.</h2>
+            <svg id="hospitals_chart">
+        </div>
+        <div class="slide">
+          <h2 class="explainer_text">At the same time, <em>The Journal News</em> found that in 2014 alone, these hospitals sheltered $2.6 billion in overseas tax havens.</h2>
+        </div>
+        <div class="slide">
+          <h3 class="explainer_text">Including <div class="explainer_text red" id="country_text">hi</div></h3>
+          <img id="country" src="assets/farrar.jpeg"/>
+        </div>
+        <div class="slide">
+          <h3 class="explainer_text">The following local state hospitals sheltered the most money in Central America and the Caribbean.</h3>
+        </div>
+        <div class="slide">
+          <h3 class="explainer_text">This type of private investment may run counter to the nonprofit status of these hospitals, begging the question of why they receive public subsidies.</h3>
         </div>
       </section>
     </div>
