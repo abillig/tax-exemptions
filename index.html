@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="styles/iphone.css" />
     <link rel="stylesheet" type="text/css" href="styles/ipad.css" />
     <link rel="stylesheet" type="text/css" href="styles/arrow.css" />
+    <link rel="stylesheet" type="text/css" href="styles/hospitals.css" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.3/jquery.fullPage.css" rel="stylesheet">
@@ -29,6 +30,7 @@
     <script src="scripts/d3_idas_bar_chart.js"></script>
     <script src="scripts/d3_pie_generic.js"></script>
     <script src="scripts/image_swapper.js"></script>
+    <script src="scripts/top_hospitals_chart.js"></script>
     <script src="vendors/parallaxify.min.js"></script>
     <!-- <script src="./scripts/fullPageScript.js"></script> -->
 
@@ -56,7 +58,7 @@ $(document).ready(function() {
           //Navigation
           menu: '#menu',
           lockAnchors: false,
-          anchors:['introduction', 'introduction2', 'introduction3', 'four', 'idas', 'parks', 'universities', 'religion', 'hospitals'],
+          anchors:['introduction', 'introduction2', 'introduction3', 'four', 'hospitals', 'parks', 'idas', 'universities', 'religion'],
           navigation: false,
           navigationPosition: 'right',
           // navigationTooltips: ['firstSlide', 'secondSlide'],
@@ -141,6 +143,11 @@ $(document).ready(function() {
               states_religion_desktop()
             }
 
+            if(anchorLink ==='hospitals' && slideIndex ===5) {
+              top_hospitals_mobile()
+              top_hospitals()
+            }
+
             if(anchorLink ==='hospitals' && slideIndex ===2) {
               hospitals_bar()
             }
@@ -161,18 +168,18 @@ $(document).ready(function() {
             }
 
 
-            if(anchorLink ==="universities"&& index ===7 && slideIndex ===5){
+            if(anchorLink ==="universities" && slideIndex ===5){
               pieChart("brockfort_budget_graph", [100, 0], {display: false}, ["#2779aa",
               "#a74225"])
-            } else if (anchorLink ==="universities"&& index ===7 && slideIndex ===6){
+            } else if (anchorLink ==="universities" && slideIndex ===6){
               pieChart("brockfort_police_graph", [26, 74], ["Public Safety"], ["#a74225", "#2779aa"])
             }
 
-            if (anchorLink === "idas" && index === 5 && slideIndex === 3){
+            if (anchorLink === "idas" && slideIndex === 3){
               pieChart("exemption_pie", [99, 1], {display: false}, ["#2779aa", "#a74225"])
             }
 
-            if(anchorLink == "universities" && index == 7 && slideIndex == 2){
+            if(anchorLink == "universities" && slideIndex == 2){
               pieChart("brockfort_graph", [65, 35], ["SUNY", "Non-SUNY"], ["#a74225", "#2779aa"])
             }
 
@@ -183,13 +190,17 @@ $(document).ready(function() {
               // $('explainer_text small left').css('margin-bottom', '0px')
             }
 
-            if(anchorLink == "idas" && index == 5 && slideIndex == 6){
+            if(anchorLink == "idas"  && slideIndex == 6){
               // $('.fp-controlArrow.fp-prev').css("zoom", "50%")
               // $('.fp-controlArrow.fp-next').css("zoom", "50%")
               idas_chart()
             }
 
-            if(anchorLink ==='parks'&& index ===6 && slideIndex ===13 || anchorLink==='idas' && slideIndex===9){
+            if(anchorLink ==='parks' && slideIndex ===13
+            || anchorLink==='idas' && slideIndex===9
+            || anchorLink ==='hospitals' && slideIndex ===8
+            ||anchorLink ==='universities' && slideIndex ===10
+            || anchorLink ==='religion' && slideIndex ===9){
               $('.fp-controlArrow.fp-prev').hide()
               $('.fp-controlArrow.fp-next').hide()
             }
@@ -211,7 +222,12 @@ $(document).ready(function() {
             //   idas_chart()
             // }
 
-            if (index === 8 && slideIndex === 3){
+            // if(anchorLink ==='hospitals' && slideIndex ===4) {
+            //   top_hospitals_mobile()
+            //   top_hospitals()
+            // }
+
+            if (anchorLink === 'religion' && slideIndex === 5){
             var el = document.querySelector('#first_dollar_figure');
               od = new Odometer({
                 el: el,
@@ -222,7 +238,7 @@ $(document).ready(function() {
               el.innerHTML = 83000
               }
 
-            if (index === 8 && slideIndex === 5){
+            if (anchorLink === 'religion' && slideIndex === 7){
             var el = document.querySelector('#second_dollar_figure');
               od = new Odometer({
                 el: el,
@@ -256,7 +272,7 @@ $(document).ready(function() {
               el.innerHTML = 1000000
               }
 
-              if(anchorLink ==='parks'&& index ===6 && slideIndex ===13){
+              if(anchorLink ==='parks' && slideIndex ===13){
                 $('.fp-controlArrow.fp-prev').show()
                 $('.fp-controlArrow.fp-next').show()
               }
@@ -364,9 +380,138 @@ $.fn.fullpage.setAllowScrolling(false);
 
         <h2 class="explainer_text">The <em>Journal News</em> investigated where that money goes. <br><br>Swipe down to find out more.</h2>
     </section>
+    <section class="section">
+      <div class="slide">
+        <div class="icon_page hospital">
+          <h1 class="header centered">Hospitals</h1>
+          <img class="icon negative hospital" src="assets/hospital_icon.png"></img>
+        </div>
+      </div>
+      <div class="slide">
+        <h2 class="explainer_text">Many nonprofit hospitals in New York receive property tax exemptions.</h2>
+      </div>
+      <div class="slide">
+        <h2 class = "explainer_text small left">Hospitals' exempt parcels have risen in value from $13.1 billion to $22.7 billion over the past 16 years.</h2>
+          <svg id="hospitals_chart">
+      </div>
+      <div class="slide">
+        <h2 class="explainer_text">At the same time, these hospitals sheltered $2.6 billion in overseas tax havens.</h2>
+      </div>
+      <div class="slide">
+        <h3 class="explainer_text">Including <div class="explainer_text red" id="country_text">Panama</div></h3>
+        <img id="country" src="assets/panama.png"/>
+      </div>
+      <div class="slide">
+        <h3 class="explainer_text">These hospitals had the most sheltered in Central America and the Caribbean:</h3>
+        <div id="top_hospitals_chart_container">
+          <canvas id="top_hospitals_chart"></canvas>
+        </div>
+        <div id="top_hospitals_chart_mobile_container">
+        <!-- <h1 class="explainer_text">Hello</h1> -->
+        <canvas id="top_hospitals_mobile_chart" height="40%" width="40%"></canvas>
+      </div>
+      </div>
+      <div class="slide">
+        <h3 class="explainer_text">Private investments and tax avoidance could threaten the hospitals' nonprofit status.<br><br>Similar behavior by hospitals in New Jersey has led their legislature to consider removing hospitals' exemptions.</h3>
+      </div>
+      <div class="slide desktop_quote_slide allen">
+        <div class="quote blackman">
+          <h3 style="color: white">“If something is getting an exemption, the taxpayers are subsidizing that entity and it has to bear the burden of showing why the exemption is necessary...If you can follow the money into someone’s pocket, that in and of itself may be sufficient to take a (tax exemption) away.”
+        <br><br>Martin Allen, attorney for communities challenging tax exemptions.</h3>
+        </div>
+      </div>
+      <!-- <div class="slide">
+        <h3 class="explainer_text">This type of private investment may run counter to the nonprofit status of these hospitals, begging the question of why they receive public subsidies.</h3>
+      </div> -->
+      <div class="slide">
+        <div>
+          <svg class="arrows relative">
+                <!-- <path class="a1" d="M0 0 L30 32 L60 0"></path> -->
+            <path class="a2" d="M0 20 L30 52 L60 20"></path>
+            <path class="a3" d="M0 40 L30 72 L60 40"></path>
+          </svg>
+        </div>
+      </div>
+    </section>
+    <section class="section" class="public_land_section">
+      <div class="slide">
+        <div class="icon_page hospital">
+          <h1 class="header centered">Public Land</h1>
+          <img class="icon public_land" src="assets/public_land_icon.png"></img>
+        </div>
+      </div>
+      <div class="slide park_slide">
+        <h2 class="header image_header">New York State owns about 4 million acres of land, including parks and prisons.</h2>
+        <!-- <img src="new_york.png" id="new_york_image"></img> -->
+      </div>
+      <div class="slide park_slide_bw">
+        <img src="assets/new_york_counties.png" class="header image_header small" id="new_york_counties"></img>
+        <h1 class="header image_header counties">The state government pays its counties taxes on the land that they house.</h1>
+
+      </div>
+      <div class="slide public_land_section">
+        <h1 class="header explainer_text">But not all counties.</h1>
+      </div>
+      <div class="slide public_land_section">
+          <div class="header image_header double" id="putnam_rockland">
+            <img src="assets/rockland-putnam_county.png" id="putnam_rockland_image"></img>
+          </div>
+        <h2 class="explainer_text putnam">Public land in Putnam and Rockland is worth about <span class="red">$1 billion</span>.</h2>
+      </div>
+      <div class="slide public_land_section">
+        <h2 class="explainer_text">The state pays these counties about</h2>
+        <div class="odometer_slide">
+          <div class="odometer_and_dollar millions_container third">
+            <div class="odometer_and_dollar millions">$</div>
+            <div class="odometer_and_dollar millions" id="third_dollar_figure"></div>
+          </div>
+        </div>
+         <h2 class="explainer_text">in town, county, and school taxes.</h2>
+      </div>
+      <div class="slide public_land_section">
+        <img src="assets/westchester_county.png" class="header image_header" id="westchester_image"></img>
+        <h2 class="explainer_text">Nearby Westchester County has <span class="red">$3.7 billion</span> in public lands, almost 4 times as much as its neighbors.</h2>
+      </div>
+      <div class="slide public_land_section">
+        <h2 class="explainer_text">Yet the state only pays Westchester about</h2>
+        <div class="odometer_and_dollar millions_container zero">
+          <div class="odometer_and_dollar millions">$</div>
+          <div class="odometer_and_dollar millions" id="fourth_dollar_figure"></div>
+        </div>
+        <h2 class="explainer_text">in taxes on that land.</h2>
+      </div>
+      <div class="slide">
+        <h1 class="explainer_text">There seems to be little rhyme or reason to where and when the state pays taxes on public land.</h1>
+      </div>
+      <div class="slide sing_sing">
+        <h1 class="header image_header">New York pays school taxes to Ossining for the Sing Sing prison.</h1>
+      </div>
+      <div class="slide taconic_womens">
+        <h1 class="header image_header">But none to Bedford for the Bedford Hills Correctional Facility.</h1>
+      </div>
+      <div class="slide aqueduct_1">
+        <div class="aqueduct_text">
+          <h1 class="header image_header small_text">It pays taxes on the Croton Aqueduct State Park in Ossining.</h1>
+        </div>
+      </div>
+      <div class="slide aqueduct_2">
+        <div class="aqueduct_text">
+          <h1 class="header image_header small_text">But not the Croton Aqueduct State Park in Greenburgh, Yonkers, and Mount Pleasant.</h1>
+        </div>
+      </div>
+      <div class="slide">
+        <div>
+          <svg class="arrows relative">
+                <!-- <path class="a1" d="M0 0 L30 32 L60 0"></path> -->
+            <path class="a2" d="M0 20 L30 52 L60 20"></path>
+            <path class="a3" d="M0 40 L30 72 L60 40"></path>
+          </svg>
+        </div>
+      </div>
+    </section>
       <section class="section">
         <div class="slide">
-          <div class="business_elements">
+          <div class="icon_page">
             <h1 class="header centered">Businesses</h1>
             <img class="icon negative business_image" src="assets/business.png"></img>
           </div>
@@ -442,83 +587,7 @@ $.fn.fullpage.setAllowScrolling(false);
       </section> -->
       <section class="section" class="public_land_section">
         <div class="slide">
-          <div class="business_elements hospital">
-            <h1 class="header centered">Public Land</h1>
-            <img class="icon public_land" src="assets/public_land_icon.png"></img>
-          </div>
-        </div>
-        <div class="slide park_slide">
-          <h2 class="header image_header">New York State owns about 4 million acres of land, including parks and prisons.</h2>
-          <!-- <img src="new_york.png" id="new_york_image"></img> -->
-        </div>
-        <div class="slide park_slide_bw">
-          <img src="assets/new_york_counties.png" class="header image_header small" id="new_york_counties"></img>
-          <h1 class="header image_header counties">The state pays its counties taxes on the land that they house.</h1>
-
-        </div>
-        <div class="slide public_land_section">
-          <h1 class="header explainer_text">But not all counties.</h1>
-        </div>
-        <div class="slide public_land_section">
-            <div class="header image_header double" id="putnam_rockland">
-              <img src="assets/rockland-putnam_county.png" id="putnam_rockland_image"></img>
-            </div>
-          <h2 class="explainer_text putnam">Public land in Putnam and Rockland is worth about <span class="red">$1 billion</span>.</h2>
-        </div>
-        <div class="slide public_land_section">
-          <h2 class="explainer_text">The state pays these counties about</h2>
-          <div class="odometer_slide">
-            <div class="odometer_and_dollar millions_container third">
-              <div class="odometer_and_dollar millions">$</div>
-              <div class="odometer_and_dollar millions" id="third_dollar_figure"></div>
-            </div>
-          </div>
-           <h2 class="explainer_text">in town, county, and school taxes.</h2>
-        </div>
-        <div class="slide public_land_section">
-          <img src="assets/westchester_county.png" class="header image_header" id="westchester_image"></img>
-          <h2 class="explainer_text">Nearby Westchester County has <span class="red">$3.7 billion</span> in public lands, almost 4 times as much as its neighbors.</h2>
-        </div>
-        <div class="slide public_land_section">
-          <h2 class="explainer_text">Yet the state only pays Westchester about</h2>
-          <div class="odometer_and_dollar millions_container zero">
-            <div class="odometer_and_dollar millions">$</div>
-            <div class="odometer_and_dollar millions" id="fourth_dollar_figure"></div>
-          </div>
-          <h2 class="explainer_text">in taxes on that land.</h2>
-        </div>
-        <div class="slide">
-          <h1 class="explainer_text">There seems to be little rhyme or reason to where and when the state pays taxes on public land.</h1>
-        </div>
-        <div class="slide sing_sing">
-          <h1 class="header image_header">New York pays school taxes to Ossining for the Sing Sing prison.</h1>
-        </div>
-        <div class="slide taconic_womens">
-          <h1 class="header image_header">But none to Bedford for the Bedford Hills Correctional Facility.</h1>
-        </div>
-        <div class="slide aqueduct_1">
-          <div class="aqueduct_text">
-            <h1 class="header image_header small_text">It pays taxes on the Croton Aqueduct State Park in Ossining.</h1>
-          </div>
-        </div>
-        <div class="slide aqueduct_2">
-          <div class="aqueduct_text">
-            <h1 class="header image_header small_text">But not the Croton Aqueduct State Park in Greenburgh, Yonkers, and Mount Pleasant.</h1>
-          </div>
-        </div>
-        <div class="slide">
-          <div>
-            <svg class="arrows relative">
-    							<!-- <path class="a1" d="M0 0 L30 32 L60 0"></path> -->
-    					<path class="a2" d="M0 20 L30 52 L60 20"></path>
-    					<path class="a3" d="M0 40 L30 72 L60 40"></path>
-    				</svg>
-          </div>
-        </div>
-      </section>
-      <section class="section" class="public_land_section">
-        <div class="slide">
-          <div class="business_elements hospital">
+          <div class="icon_page hospital">
             <h1 class="header centered">Universities</h1>
             <img class="icon negative universities" src="assets/university_icon.png"></img>
           </div>
@@ -579,7 +648,7 @@ $.fn.fullpage.setAllowScrolling(false);
       </section>
       <section class="section" id="religious">
         <div class="slide" id="religion_intro">
-          <div class="business_elements">
+          <div class="icon_page">
             <h1 class="header centered">Religious Organizations</h1>
             <img class="icon negative religious" src="assets/prayer_not_free.png"></img>
           </div>
@@ -590,11 +659,10 @@ $.fn.fullpage.setAllowScrolling(false);
           </div>
         </div> -->
         <div class="slide">
-            <div id="religion_states_desktop_container">
-              <h1 class="explainer_text">Hello</h1>
-            <canvas id="religion_states_chart"></canvas>
-          </div>
           <h1 class="explainer_text small left">New York is one of the least religious states in the country, with just 29% of people attending weekly services.</h1>
+            <div id="religion_states_desktop_container">
+            <canvas id="religion_states_chart" height="400" width="800"></canvas>
+          </div>
           <div id="religion_states_mobile_container">
             <!-- <h1 class="explainer_text">Hello</h1> -->
             <canvas id="religion_states_chart_mobile" height="100" width="80"></canvas>
@@ -609,25 +677,26 @@ $.fn.fullpage.setAllowScrolling(false);
               <!-- <h1>Religious Organizations</h1> -->
 
             <img class = "header image_header small" src="assets/rockland_county.png"></img>
-            <h2 class="explainer_text">Ramapo, New York, has an extremely high concentration of synagogues and Yeshivas.<br><br>
+            <h2 class="explainer_text">This rise in exemptions has been drastic in Ramapo, which has a booming population of synagogues and Yeshivas.<br><br>
                 <!-- These organizations can apply for religious exemptions on their land.<br><br>
                 But even when their applications are rejected, they can keep reapplying.</h2> -->
         </div>
         <div class="slide">
             <div>
               <h2 class="explainer_text">
-                Religious groups in New York can apply to pay no property taxes. Ramapo has been flooded with these applications.<br><br>
-                But even when the town rejects an application, religious groups can keep appealing.</h2>
+                Ramapo has been flooded with applications for religious exemptions from property taxes.<br><br>
+                Even when the town rejects an application, religious groups keep appealing.</h2>
             </div>
         </div>
         <div class="slide">
-          <div class="squares_header" id="first_squares_header"><h1>In 2015, Ramapo rejected 240 religious exemption requests.</h1><div>
-          <div id='squares_container'>
+          <div class="squares_header" id="first_squares_header"><h1>In 2015, Ramapo rejected 240 religious exemption requests.</h1></div>
+          <div class='squares_container'>
             <div id="squares" width="200" height="200" data-parallaxify-range-x="100"></div>
-          </div>
+          <!-- </div> -->
           <!-- <div id="odometer" class="odometer"></div> -->
             <script>adjustableGrid(0)</script>
         </div>
+      </div>
         <div class="slide">
           <div class="odometer_slide">
             <h1 class=explainer_text>That meant that</h1>
@@ -639,7 +708,7 @@ $.fn.fullpage.setAllowScrolling(false);
           </div>
         </div>
         <div class="slide">
-          <div id='squares_container'>
+          <div class='squares_container_second'>
             <div class="squares_header" id="second_squares_header"><h1>But after appeals, 180 of these rejections were reversed.</h1><div>
             <div id="squares2" width="200" height="200"></div>
             <script>adjustableGridSecond(99)</script>
@@ -657,48 +726,19 @@ $.fn.fullpage.setAllowScrolling(false);
             </div>
           </div>
         </div>
-        <div class="slide">
+        <!-- <div class="slide">
           <h2 class = "explainer_text ida_chart_text religion">Statewide, the value of land granted religious exemptions has risen to nearly $26 billion in 2015.</h2>
             <svg id="religion_chart">
 
-        </div>
-        <div class="slide">
+        </div> -->
+        <!-- <div class="slide">
           <div>
             <svg class="arrows relative">
-    							<!-- <path class="a1" d="M0 0 L30 32 L60 0"></path> -->
     					<path class="a2" d="M0 20 L30 52 L60 20"></path>
     					<path class="a3" d="M0 40 L30 72 L60 40"></path>
     				</svg>
           </div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="slide" id="religion_intro">
-          <div class="business_elements hospital">
-            <h1 class="header hospital">Hospitals</h1>
-            <img class="icon negative" src="assets/hospital_icon.png"></img>
-          </div>
-        </div>
-        <div class="slide">
-          <h2 class="explainer_text">Nonprofit hospitals in New York collect exemptions on their property.</h2>
-        </div>
-        <div class="slide">
-          <h2 class = "explainer_text small left">Hospitals’ tax-exempt property in New York increased in value from $13.1 billion to $22.7 billion over the past 16 years.</h2>
-            <svg id="hospitals_chart">
-        </div>
-        <div class="slide">
-          <h2 class="explainer_text">At the same time, <em>The Journal News</em> found that in 2014 alone, these hospitals sheltered $2.6 billion in overseas tax havens.</h2>
-        </div>
-        <div class="slide">
-          <h3 class="explainer_text">Including <div class="explainer_text red" id="country_text">hi</div></h3>
-          <img id="country" src="assets/farrar.jpeg"/>
-        </div>
-        <div class="slide">
-          <h3 class="explainer_text">The following local state hospitals sheltered the most money in Central America and the Caribbean.</h3>
-        </div>
-        <div class="slide">
-          <h3 class="explainer_text">This type of private investment may run counter to the nonprofit status of these hospitals, begging the question of why they receive public subsidies.</h3>
-        </div>
+        </div> -->
       </section>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>

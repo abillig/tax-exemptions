@@ -32,15 +32,15 @@ var myChart = new Chart(ctx, {
             },
                 ticks: {
                     beginAtZero:true,
-                    fontSize: 8
+                    fontSize: 6
                 }
             }],
             xAxes: [{
               gridLines: {
                 color: "rgba(0, 0, 0, 0)",
-                ticks: {
-                    beginAtZero:true
-                }
+            }, ticks: {
+                beginAtZero:true,
+                // fontSize: 4
             }
             }]
         }

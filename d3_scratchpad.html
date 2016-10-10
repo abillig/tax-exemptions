@@ -24,118 +24,130 @@
 
 		<script>
 
-		  var data = [["VT", 21], ["NH", 22], ["ME", 22], ["MA", 23], ["WI", 27], ["CT", 28], ["DC", 28], ["HI", 28], ["NY", 29], ["OR", 29], ["CO", 30], ["WA", 30], ["AK", 30], ["MT", 31], ["MD", 31], ["CA", 31], ["NV", 31], ["ND", 33], ["MI", 33], ["MN", 34], ["IL", 34], ["DE", 34], ["AZ", 34], ["PA", 34], ["FL", 35], ["NJ", 35], ["ID", 35], ["RI", 36], ["IA", 36], ["NM", 36], ["SD", 36], ["MO", 37], ["IN", 37], ["KS", 37], ["OH", 38], ["WY", 38], ["NC", 39], ["NE", 39], ["KY", 39], ["AR", 41], ["TX", 42], ["GA", 42], ["OK", 43], ["VA", 44], ["LA", 46], ["WV", 46], ["SC", 47], ["MS", 49], ["TN", 51], ["AL", 51], ["UT", 53]]
+		var data = [3.8]
+
+				var h = 300;
+				var w = 300;
+				var barPadding = 2;
+				// var datasetLength = Object.keys(data).length
+				var padding = 30;
+				// var barWidth = (w / datasetLength) - barPadding;
+				// var formatYear = d3.format("Y")
+				var formatExemptionCount = d3.format(".2s")
+
+				// console.log(barWidth)
+				//
+				// var yScale = d3.scale.linear()
+				// 	.domain([d3.min(data[1]), d3.max(data[1])])
+				// 	.range([0, height]);
+				//
+				// var xScale = d3.scale.linear()
+				// 	.domain([d3.min(data[0]), d3.max(data[0])])
+				// 	.range([0, width]);
+
+				// var xScale = d3.scale.ordinal()
+				// 	.domain(data[0])
+				// 	.rangeBands([0, width], 0.1, 0.3);
+
+				var xScale = d3.scale.linear()
+						.domain([d3.max(data, function(d){ return d; }), 0])
+						//in order to get the x axis to align to the bars, i had to
+						//redefine the range that it was mapped to
+						.range([w, 30]);
+
+				var yScale = d3.scale.linear()
+						.domain([0, 4])
+						.range([h - padding, padding]);
 
 
 
-		      var h = 300;
-		      var w = 490;
-		      var barPadding = 0;
-		      var datasetLength = data.length
-		      var padding = 30;
-		      // var barWidth = (w / datasetLength) - padding;
-		      // var formatYear = d3.format("Y")
-		      var formatExemptionCount = d3.format(".2s")
-
-		      // console.log(barWidth)
-		      //
-		      // var yScale = d3.scale.linear()
-		      // 	.domain([d3.min(data[1]), d3.max(data[1])])
-		      // 	.range([0, height]);
-		      //
-		      // var xScale = d3.scale.linear()
-		      // 	.domain([d3.min(data[0]), d3.max(data[0])])
-		      // 	.range([0, width]);
-
-		      // var xScale = d3.scale.ordinal()
-		      // 	.domain(data[0])
-		      // 	.rangeBands([0, width], 0.1, 0.3);
-
-		      var xScale = d3.scale.linear()
-		          .domain([0, d3.max(data, function(d, i){ return i; })])
-		          //in order to get the x axis to align to the bars, i had to
-		          //redefine the range that it was mapped to
-		          .range([30, w - padding]);
-
-		      var yScale = d3.scale.linear()
-		          .domain([0, d3.max(data, function(d){ return d[1]; })])
-		          .range([0, h - padding * 2]);
-
-		      var svg = d3.select("#bar-chart")
-		        .append("svg")
-		        .attr('width', w)
-		        .attr('height', h);
+				var svg = d3.select("#bar-chart")
+					.append("svg")
+					.attr('width', w)
+					.attr('height', h);
 
 
-		        svg.selectAll('rect')
-		          .data(data)
-		          .enter()
-		          .append('rect')
-		          .attr('class', 'bar')
-		          .attr("x", function(d, i) {
-		                return i * (w / datasetLength - barPadding) + padding;  //Bar width of 20 plus 1 for padding
-		            })
-		          .attr("y", function (d, i) {
-		              return h;
-		            })
-		          .attr("height", 0)
-		          .attr("width", 2)
-		          .transition()
-		          .duration(200)
-		          .delay(function(d, i){
-		            return i * 50;
-		          })
-		          .attr("y", function(d, i){
-		              return h - padding - yScale(d[1])
-		          })
-		          .attr("height", function(d, i){
-		              return yScale(d[1])
-		          })
-		          .attr("fill", function(d) {
-		              if(d[0]==="NY"){
-										return 'red'
-									} else {
-										return '#d3d3d3'
-									}
-		          });
+					svg.selectAll('rect')
+						.data(data)
+						.enter()
+						.append('rect')
+						.attr('class', 'bar')
+						.attr("x", function(d, i) {
+									return padding + 10;   //Bar width of 20 plus 1 for padding
+							})
+						.attr("y", function (d, i) {
+								return h - padding*2;
+							})
+						.attr("height", padding)
+						.attr("width", 60)
+						.transition()
+						.duration(1200)
+						// .delay(function(d, i){
+						// 	return i * 50;
+						// })
+						.attr("y", function(d, i){
+							return yScale(d)
+								// return yScale(d) - padding * 2
+						})
+						.attr("height", function(d, i){
+							return h - yScale(d) - padding
+								// return (h - yScale(d))
+						})
+						.attr("fill", function(d) {
+								return "rgb(" + (yScale(d) / 2 + 190) + ", 0, 0)";
+						});
 
-		      //LABELS :
+				//LABELS :
 
-		      // svg.selectAll("text")
-		      //    .data(data)
-		      //    .enter()
-		      //    .append("text")
-		      //    .style("fill", "white")
-		      //    .text(function(d) {
-		      //            return formatExemptionCount(d[1]).replace("G", "");
-		      //       })
-		      //     .attr("x", function(d, i) {
-		      //       console.log(i * (w / datasetLength));
-		      //           return i * (w / datasetLength - barPadding) + padding + 3;
-		      //       })
-		      //      .attr("y", function(d) {
-		      //           return h + 12 - padding - yScale(d[1]);
-		      //      });
+				svg.selectAll("text")
+					 .data(data)
+					 .enter()
+					 .append("text")
+					 .style("fill", "white")
+					 .text(function(d) {
+									 return formatExemptionCount(d).replace("G", "");
+							})
+						.attr("x", function(d, i) {
+									return 30;
+							})
+						 .attr("y", function(d) {
+									return yScale(d) + 30;
+						 });
 
 
 
-		      //AXES:
+				//AXES:
 
-		          var xAxis = d3.svg.axis()
-		            .scale(xScale)
-								.tickFormat(function(d) { console.log(d[0]) })
-		            .orient("bottom")
-		            .ticks(20);
+				var xAxis = d3.svg.axis()
+					.scale(xScale)
+					.orient("bottom")
+					.ticks(0)
+					// .tickFormat(formatYear);
 
-		          svg.append("g")
-		            .attr("class", "axis")
-		            .attr("transform", "translate(11," + (h - padding) +")")
-		            .call(xAxis)
-		            .selectAll("text")
-		                .style("text-anchor", "end")
-		                // .attr("dx", "-.8em")
-		                .attr("dy", ".15em")
-		                .attr("transform", "rotate(-65)" );
+					svg.append("g")
+						.attr("class", "axis")
+						.attr("transform", "translate(-6, "+ 270+")")
+						.call(xAxis)
+
+
+
+
+
+						var yAxis = d3.svg.axis()
+							.scale(yScale)
+							.orient("left")
+							.ticks(10)
+							// .tickFormat(formatYear);
+
+						svg.append("g")
+							.attr("class", "axis")
+							.attr("transform", "translate(30, 0)")
+							.call(yAxis)
+							// .selectAll("text")
+									// .style("text-anchor", "end")
+									// // .attr("dx", "-.8em")
+									// .attr("dy", ".15em")
+									// .attr("transform", "rotate(-65)" );
 </script>
 
   </body>

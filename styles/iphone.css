@@ -92,12 +92,17 @@
       height: 60%;
     }
 
-    .business_elements{
+    .icon_page{
       margin-top: -30%;
     }
 
-    .business_elements.hospital{
+    .icon_page.hospital{
       margin-top: -10%;
+    }
+
+    .icon.negative.hospital{
+      width: 70%;
+      margin-left: 15%;
     }
 
 
@@ -107,8 +112,8 @@
 
 
     #hospital_image{
-      -webkit-filter: invert(1);
-filter: invert(1);
+      /*-webkit-filter: invert(1);
+filter: invert(1);*/
 zoom: 50%;
 margin-left: 17%;
     }
@@ -197,7 +202,16 @@ margin-left: 17%;
       width: 70%;
       margin-left: 15%;
       margin-bottom: 30%;
-      filter: invert(100%);
+      /*filter: invert(100%);*/
+    }
+
+    .header.image_header.small_text{
+      width: 90%;
+      /*top: 40; */
+      margin-right: 5%;
+      margin-left: 5%;
+      font-size: 3.0vh;
+      /*margin: 0 auto;*/
     }
 
 

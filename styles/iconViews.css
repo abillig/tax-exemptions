@@ -25,3 +25,9 @@ filter: invert(1);
   width: 25%;
   margin-left: 38%;
 }
+
+.icon.negative.hospital{
+  width: 30%;
+  margin-left: 35%;
+  margin-top: 0%;
+}

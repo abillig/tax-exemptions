@@ -10,51 +10,37 @@
       height: 1200px;
     }*/
 
-    #mobile_container{
-      display: none;
-    }
-
-    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-      #container{
-        display: none;
-      }
-      #mobile_container{
-        display: block;
-      }
-    }
-
-
-    #text{
-      position: absolute;
-      margin-top: 50%;
-      margin-left: 50%;
-    }
     </style>
 
   </head>
   <body>
-    <div id="container">
-      <h1 id="text">Hello</h1>
-    <canvas id="myChart"></canvas>
-  </div>
-  <div id="mobile_container">
-    <h1 id="text">Hello</h1>
-    <canvas id="myChartMobile" height="100" width="80"></canvas>
-  </div>
+    <div id="hospital_chart_container">
+      <canvas id="top_hospitals_chart"></canvas>
+    </div>
     <script>
 
-    var states_religion_desktop = function(){
+      Chart.defaults.global.legend.display = false;
 
-    var ctx = document.getElementById("religion_states_cart");
+
+    var ctx = document.getElementById("top_hospitals_chart");
     var myChart = new Chart(ctx, {
         type: 'horizontalBar',
         data: {
-            labels: ["VT", "NH", "ME", "MA", "WI", "CT", "DC", "HI", "NY", "OR", "CO", "WA", "AK", "MT", "MD", "CA", "NV", "ND", "MI", "MN", "IL", "DE", "AZ", "PA", "FL", "NJ", "ID", "RI", "IA", "NM", "SD", "MO", "IN", "KS", "OH", "WY", "NC", "NE", "KY", "AR", "TX", "GA", "OK", "VA", "LA", "WV", "SC", "MS", "TN", "AL", "UT"] ,
+            labels: ['Memorial Sloan-Kettering Cancer Center ($1.2 billion)',
+            'University of Rochester Medical Center ($656.5 million)',
+            'North Shore University Hospital ($337 million)',
+            'New York-Presbyterian Hospital ($200 million)',
+            'Mt. Sinai Hospital ($538 thousand)'] ,
             datasets: [{
                 // label: '# of Votes',
-                data: [21, 22, 22, 23, 27, 28, 28, 28, 29, 29, 30, 30, 30, 31, 31, 31, 31, 33, 33, 34, 34, 34, 34, 34, 35, 35, 35, 36, 36, 36, 36, 37, 37, 37, 38, 38, 39, 39, 39, 41, 42, 42, 43, 44, 46, 46, 47, 49, 51, 51, 53] ,
+                data: [1099317790,
+                656785256,
+                336692999,
+                202349925,
+                53840000] ,
                 backgroundColor: [
-                    'rgba(0,0,0,1)',,0,0,0,0,0,0,0,'red','rgba(0,0,0,1)',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+                  '#d03',
+                  '#d03','#d03','#d03','#d03','#d03'
                 ],
                 borderColor: [
                     // 'rgba(255,99,132,1)',
@@ -72,66 +58,60 @@
             scales: {
                 yAxes: [{
                   gridLines: {
+                    display: false,
                     color: "rgba(0, 0, 0, 0)",
                 },
                     ticks: {
-                        beginAtZero:true
+                      display: false,
+                        beginAtZero:true,
+                        fontSize: 14
                     }
                 }],
                 xAxes: [{
+                  display: false,
                   gridLines: {
+                    display: false,
                     color: "rgba(0, 0, 0, 0)",
-                }
-                }]
-            }
-        }
-    });
-  }
-
-  var states_religion_mobile = function(){
-
-    var ctx = document.getElementById("religion_states_chart_mobile");
-    var myChart = new Chart(ctx, {
-        type: 'horizontalBar',
-        data: {
-            labels: ["VT", "NH", "ME", "MA", "WI", "CT", "DC", "HI", "NY", "OR", "CO", "WA", "AK", "MT", "MD", "CA", "NV", "ND", "MI", "MN", "IL", "DE", "AZ", "PA", "FL", "NJ", "ID", "RI", "IA", "NM", "SD", "MO", "IN", "KS", "OH", "WY", "NC", "NE", "KY", "AR", "TX", "GA", "OK", "VA", "LA", "WV", "SC", "MS", "TN", "AL", "UT"] ,
-            datasets: [{
-                // label: '# of Votes',
-                data: [21, 22, 22, 23, 27, 28, 28, 28, 29, 29, 30, 30, 30, 31, 31, 31, 31, 33, 33, 34, 34, 34, 34, 34, 35, 35, 35, 36, 36, 36, 36, 37, 37, 37, 38, 38, 39, 39, 39, 41, 42, 42, 43, 44, 46, 46, 47, 49, 51, 51, 53] ,
-                backgroundColor: [
-                    'rgba(0,0,0,0)',,0,0,0,0,0,0,0,'red','rgba(0,0,0,0)',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-                ],
-                borderColor: [
-                    // 'rgba(255,99,132,1)',
-                    // 'rgba(54, 162, 235, 1)',
-                    // 'rgba(255, 206, 86, 1)',
-                    // 'rgba(75, 192, 192, 1)',
-                    // 'rgba(153, 102, 255, 1)',
-                    // 'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-          responsive: true,
-            scales: {
-                yAxes: [{
-                  gridLines: {
-                    color: "rgba(0, 0, 0, 0)",
-                },
                     ticks: {
-                        beginAtZero:true
+                      display: false,
+                        beginAtZero:true,
+                        fontSize: 0
                     }
-                }],
-                xAxes: [{
-                  gridLines: {
-                    color: "rgba(0, 0, 0, 0)",
                 }
                 }]
+            },
+            animation: {
+    duration: 500,
+    easing: "easeOutQuart",
+    onComplete: function () {
+        var ctx = this.chart.ctx;
+        ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontFamily, 'normal', Chart.defaults.global.defaultFontFamily);
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'bottom';
+
+        this.data.datasets.forEach(function (dataset) {
+            console.log(dataset);
+            for (var i = 0; i < dataset.data.length; i++) {
+                var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
+                    scale_max = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._yScale.maxHeight;
+                    left = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._xScale.left;
+                    offset = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._xScale.longestLabelWidth;
+                ctx.fillStyle = '#fff';
+                var y_pos = model.y - 5;
+                var label = model.label;
+                // Make sure data value does not get overflown and hidden
+                // when the bar's value is too close to max value of scale
+                // Note: The y value is reverse, it counts from top down
+                if ((scale_max - model.y) / scale_max >= 0.93)
+                    y_pos = model.y + 20;
+                // ctx.fillText(dataset.data[i], model.x, y_pos);
+                ctx.fillText(label, left + 10, model.y + 8);
             }
-        }
-    });
+        });
     }
+	}
+        }
+    });
 
     </script>
   </body>

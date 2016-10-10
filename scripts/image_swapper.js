@@ -11,7 +11,7 @@
 // }
 
 function startTimer() {
-    setInterval(displayNextImage, 1500);
+    setInterval(displayNextImage, 1200);
 }
 
 var images = [["The Cayman Islands", "assets/cayman_islands.png"], ["Aruba", "assets/aruba.png"], ["Panama", "assets/panama.png"], ["Iceland", "assets/iceland.png"], ["Greenland", "assets/greenland.png"]], x = -1;

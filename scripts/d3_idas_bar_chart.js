@@ -333,7 +333,7 @@ var hospitals_bar = function(){
               return yScale(d[1])
           })
           .attr("fill", function(d) {
-              return "rgb(100, 0, " + (yScale(d[1]) / 2 + 90) + ")";
+            return "rgb(" + (yScale(d[1]) / 2 + 90) + ", 0, 0)";
           });
 
       //LABELS :
