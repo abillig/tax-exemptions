@@ -1,7 +1,9 @@
 var pieChart = function(element, dataArray, labelsArray, colorArray){
 var ctx = document.getElementById(element);
+    Chart.defaults.global.tooltips = false;
 var myChart = new Chart(ctx, {
   type: 'pie',
+  tooltips: false,
   data: {
     labels: labelsArray,
     datasets: [{
@@ -14,8 +16,10 @@ var myChart = new Chart(ctx, {
 
 var pieChartNoLabels = function(element, dataArray){
 var ctx = document.getElementById(element);
+    Chart.defaults.global.tooltips = false;
 var myChart = new Chart(ctx, {
   type: 'pie',
+  tooltips: false,
   borderWidth: 0,
   data: {
     datasets: [{

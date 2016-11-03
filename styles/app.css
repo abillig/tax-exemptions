@@ -1,12 +1,14 @@
 
 
   .explainer_text{
+    font-family: sans-serif;
     color: white;
     margin-right: 15%;
     margin-left: 15%;
     text-align: center;
     font-size: 4.0vh;
   }
+
 
   .explainer_text.small{
     font-size: 3.0vh;
@@ -16,6 +18,10 @@
     text-align: left;
     font-size: 3.0vh;
     /*margin-bottom: 90%; */
+  }
+
+  .explainer_text.small.left.hospital, .explainer_text.small.left.religion{
+    margin-top: 15%;
   }
 
   .ida_chart_text{
@@ -31,7 +37,7 @@
 
   .section_header{
     color: black;
-    font-family: arial;
+    font-family: sans-serif;
     margin-left: 35%;
     /*margin-right: 5%;*/
     margin-top: 20%;
@@ -42,7 +48,7 @@
 
   .header {
     color: white;
-    font-family: arial;
+    font-family: sans-serif;
     width: 50%;
     margin: auto;
     font-size: 5.0vh;
@@ -69,6 +75,11 @@
     margin-left: 10%;
     margin-right: 20%;
     margin-top: 4%;
+  }
+
+  .news_link{
+    text-decoration: none;
+    color: gray; 
   }
 
   .header.centered{
@@ -130,6 +141,10 @@
     margin-right: 25%;
     margin-left: 25%;
     /*margin: 0 auto;*/
+  }
+
+  .header.image_header.small.westchester{
+    margin-left: 30%;
   }
 
   .header.image_header.small_text{
@@ -223,17 +238,6 @@
   margin-top: 33%;
   margin-left: 8%;
 }
-
-.squares_container{
-  /*margin-left: 9%;
-  margin-top: 0%;
-  margin-bottom: 30%;*/
-  margin-left: 40%;
-  width: 70%;
-  display: inline-block;
-  /*height: 10%*/
-}
-
 .squares_container_second{
   /*margin-left: 9%;
   margin-top: 0%;
@@ -246,25 +250,6 @@
 
 .axis path, .axis line{
   stroke: #793232;
-}
-
-#squares{
-  margin-left: 2%;
-  width: 220px;
-  height: 360px;
-}
-
-.squares_header{
-  text-align: center;
-  color: white;
-}
-
-#first_squares_header{
-  margin-top: 5%;
-}
-
-#second_squares_header{
-  margin-left: 20%;
 }
 
 
@@ -294,19 +279,6 @@ svg{
   display: none;
   opacity: .5;
   z-index: -1;
-}
-
-#religion_states_mobile_container{
-  display: none;
-}
-
-#religion_states_desktop_container{
-  width: 70%;
-  margin-left: 10%;
-}
-
-#ramapo_bar{
-  margin-left: 10%;
 }
 
 #country{

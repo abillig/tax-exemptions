@@ -22,20 +22,6 @@ var data = [[2000, 11985077731],
     var formatYear = d3.format("Y")
     var formatExemptionCount = d3.format(".2s")
 
-    // console.log(barWidth)
-    //
-    // var yScale = d3.scale.linear()
-    // 	.domain([d3.min(data[1]), d3.max(data[1])])
-    // 	.range([0, height]);
-    //
-    // var xScale = d3.scale.linear()
-    // 	.domain([d3.min(data[0]), d3.max(data[0])])
-    // 	.range([0, width]);
-
-    // var xScale = d3.scale.ordinal()
-    // 	.domain(data[0])
-    // 	.rangeBands([0, width], 0.1, 0.3);
-
     var xScale = d3.scale.linear()
         .domain([2000, d3.max(data, function(d){ return d[0]; })])
         //in order to get the x axis to align to the bars, i had to
@@ -91,7 +77,6 @@ var data = [[2000, 11985077731],
                return formatExemptionCount(d[1]).replace("G", "");
           })
         .attr("x", function(d, i) {
-          console.log(i * (w / datasetLength));
               return i * (w / datasetLength - barPadding) + padding + 3;
           })
          .attr("y", function(d) {
@@ -149,20 +134,6 @@ var religion_chart = function(){
       var formatYear = d3.format("Y")
       var formatExemptionCount = d3.format(".2s")
 
-      // console.log(barWidth)
-      //
-      // var yScale = d3.scale.linear()
-      // 	.domain([d3.min(data[1]), d3.max(data[1])])
-      // 	.range([0, height]);
-      //
-      // var xScale = d3.scale.linear()
-      // 	.domain([d3.min(data[0]), d3.max(data[0])])
-      // 	.range([0, width]);
-
-      // var xScale = d3.scale.ordinal()
-      // 	.domain(data[0])
-      // 	.rangeBands([0, width], 0.1, 0.3);
-
       var xScale = d3.scale.linear()
           .domain([1999, d3.max(data, function(d){ return d[0]; })])
           //in order to get the x axis to align to the bars, i had to
@@ -218,7 +189,6 @@ var religion_chart = function(){
                  return formatExemptionCount(d[1]).replace("G", "");
             })
           .attr("x", function(d, i) {
-            console.log(i * (w / datasetLength));
                 return i * (w / datasetLength - barPadding) + padding + 3;
             })
            .attr("y", function(d) {
@@ -278,20 +248,6 @@ var hospitals_bar = function(){
       var formatYear = d3.format("Y")
       var formatExemptionCount = d3.format(".2s")
 
-      // console.log(barWidth)
-      //
-      // var yScale = d3.scale.linear()
-      // 	.domain([d3.min(data[1]), d3.max(data[1])])
-      // 	.range([0, height]);
-      //
-      // var xScale = d3.scale.linear()
-      // 	.domain([d3.min(data[0]), d3.max(data[0])])
-      // 	.range([0, width]);
-
-      // var xScale = d3.scale.ordinal()
-      // 	.domain(data[0])
-      // 	.rangeBands([0, width], 0.1, 0.3);
-
       var xScale = d3.scale.linear()
           .domain([1999, d3.max(data, function(d){ return d[0]; })])
           //in order to get the x axis to align to the bars, i had to
@@ -347,7 +303,6 @@ var hospitals_bar = function(){
                  return formatExemptionCount(d[1]).replace("G", "");
             })
           .attr("x", function(d, i) {
-            console.log(i * (w / datasetLength));
                 return i * (w / datasetLength - barPadding) + padding + 3;
             })
            .attr("y", function(d) {
@@ -405,20 +360,6 @@ var hospitals_bar = function(){
         var formatYear = d3.format("Y")
         var formatExemptionCount = d3.format(".2s")
 
-        // console.log(barWidth)
-        //
-        // var yScale = d3.scale.linear()
-        // 	.domain([d3.min(data[1]), d3.max(data[1])])
-        // 	.range([0, height]);
-        //
-        // var xScale = d3.scale.linear()
-        // 	.domain([d3.min(data[0]), d3.max(data[0])])
-        // 	.range([0, width]);
-
-        // var xScale = d3.scale.ordinal()
-        // 	.domain(data[0])
-        // 	.rangeBands([0, width], 0.1, 0.3);
-
         var xScale = d3.scale.linear()
             .domain([1999, d3.max(data, function(d){ return d[0]; })])
             //in order to get the x axis to align to the bars, i had to
@@ -474,7 +415,6 @@ var hospitals_bar = function(){
                    return formatExemptionCount(d[1]).replace("G", "");
               })
             .attr("x", function(d, i) {
-              console.log(i * (w / datasetLength));
                   return i * (w / datasetLength - barPadding) + padding + 3;
               })
              .attr("y", function(d) {

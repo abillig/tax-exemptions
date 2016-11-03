@@ -70,17 +70,32 @@ width:80%;
   margin-top: 35.5%;
 }
 
+.logo{
+  width: 12%;
+  margin-left: 5%;
+  margin-top: 2%;
+}
 
-  #lohud{
+  .lohud{
     width: 40%;
     margin-left: 10%;
     margin-top: 0%;
   }
 
-  #lohud_small{
+  .lohud.first{
+    margin-bottom: 20%;
+  }
+
+  .lohud_small{
     width: 30%;
     margin-left: 10%;
     margin-top: 0%;
+  }
+
+  .lohud.logo{
+    margin-left: 5%;
+    /*zoom: 160%;*/
+    margin-top: -2%;
   }
 
   #property_bar{
@@ -88,3 +103,78 @@ width:80%;
     /*height: 100%;*/
     /*margin-left: -19.3%;*/
   }
+
+  .section_header.centered.white {
+    width: 35%;
+    padding-right: 15%;
+    color: white;
+    position: relative;
+    margin-right: 10%;
+    text-align: left;
+    padding-top: 10%;
+    margin: 0 auto;
+  }
+
+  .section_header.centered.white.desktop {
+    width: 80%;
+    padding-right: 0%;
+    padding-top: 0%;
+    /*padding-left: 20%;*/
+  }
+
+  .intro_bar, .intro_bar_2{
+    display: inline-block;
+    width: 50%;
+  }
+
+  .intro_bar svg, .intro_bar_2 svg {
+    margin-left: 39%;
+  }
+
+  .intro_contents{
+    display: inline-block;
+  }
+
+.intro_bar_mobile_container{
+  display: none;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 800px) {
+  .intro_bar_mobile_container{
+    display: block;
+  }
+
+  .intro_bar_desktop_container{
+    display: none;
+  }
+
+  .logo{
+    margin-top: 7%;
+    width: 30%;
+  }
+
+  .intro_bar svg, .intro_bar_2 svg {
+    margin-left: 29%;
+  }
+
+}
+
+@media only screen and (min-width : 320px) and (max-width : 800px) {
+  .intro_bar_mobile_container{
+    display: block;
+  }
+
+  .intro_bar_desktop_container{
+    display: none;
+  }
+
+  .logo{
+    margin-top: 7%;
+    width: 30%;
+  }
+
+  .intro_bar svg, .intro_bar_2 svg {
+    margin-left: 29%;
+  }
+
+}

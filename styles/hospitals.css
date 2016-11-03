@@ -14,30 +14,14 @@ margin: 0 auto;
   display: none;
 }
 
-.desktop_quote_slide.allen {
-  width: 50;
-  height: 80%;
-  background: url('../assets/martin-allen.jpg') no-repeat center ;
-  border-radius: 5%;
-}
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-
-
-#top_hospitals_chart_container{
-  display: none;
-}
-#top_hospitals_chart_mobile_container{
-  margin-left: 5%;
-  display: block;
-}
-
-.slide.desktop_quote_slide.allen {
-  /*width: 50;
-  height: 80%;*/
-  background: url('../assets/martin-allen.jpg') no-repeat center ;
-  border-radius: 5%;
-  margin-top: -5%;
-}
+@media only screen and (min-device-width : 325px) and (max-device-width : 480px) {
+  #top_hospitals_chart_container{
+    display: none;
+  }
+  #top_hospitals_chart_mobile_container{
+    margin-left: 10%;
+    display: block;
+  }
 
 }

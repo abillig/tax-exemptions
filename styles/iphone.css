@@ -31,6 +31,10 @@
       margin-top: 4%;
     }
 
+    .section_intro_lower{
+      margin-top: 15%;
+    }
+
     #menu {
       /*display: none;*/
     }
@@ -38,7 +42,7 @@
     #menu li{
       margin: .25em;
     }
-    
+
     #property_bar{
       /*width: 144%;*/
       height: 82% !important;
@@ -179,13 +183,9 @@ margin-left: 17%;
       margin: 0 auto;
     }
 
-    .header.image_header.small{
-      /*width: 70%;*/
-      /*top: 40; */
-      margin-right: 35%;
-      margin-left: 25%;
-      /*margin-top: 10%; */
-      /*margin: 0 auto;*/
+    .header.image_header.small.rockland{
+      /*margin-right: 10%;*/
+      margin-left: 15%;
     }
 
     #new_york_counties{

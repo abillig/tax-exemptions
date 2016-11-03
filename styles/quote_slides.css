@@ -10,7 +10,7 @@
 
 .desktop_quote_slide.brodsky {
   background: url('../assets/brodsky_desktop.jpg') no-repeat center ;
-
+  filter: grayscale(100%);
 }
 
 .quote{
@@ -18,15 +18,46 @@
   /*margin: 0 auto;*/
   font-style: italic;
   color: white;
-  font-family: arial;
+  font-family: sans-serif;
   background: rgba(0, 0, 0, .5);
   padding: 5%;
   border-radius: 5%;
 }
 
-.quote.brodsky{
+.quote_container{
   float: right;
   margin-right: 5%;
+}
+
+.quote_container.blackman{
+  margin-top: 18%;
+  margin-right: 30%;
+}
+
+.quote_container.allen{
+  margin-right: 20%;
+  width: 50%;
+}
+
+.desktop_quote_slide.allen {
+  /*width: 50;
+  height: 80%;*/
+  background: url('../assets/martin-allen.jpg') no-repeat center top ;
+  /*border-radius: 5%;*/
+}
+
+.desktop_quote_slide.varrenti {
+  /*width: 50;
+  height: 80%;*/
+  background: url('../assets/varrenti.jpg') no-repeat center top ;
+  /*border-radius: 5%;*/
+}
+
+.quote_container.varrenti{
+  margin-right: 10%;
+  width: 70%;
+  margin-top: -25%;
+  parring: 0 auto;
 }
 
 
@@ -45,6 +76,7 @@
 
   .slide.mobile_quote_slide.brodsky{
     background: url('../assets/brodsky.jpeg') no-repeat center / cover;
+    filter: grayscale(100%);
   }
 
   .quote{
@@ -59,13 +91,32 @@
     font-size: 3.5vw;
   }
 
-  .quote.blackman{
-    margin-top: 140%;
+  .quote_container.blackman{
+    margin-top: 80%;
+    margin-right: 10%;
   }
 
-  .quote.brodsky{
+  .quote_container.brodsky{
     margin-top: 70%;
-    margin-right: 10%; 
+    margin-right: 10%;
+  }
+
+  .slide.desktop_quote_slide.allen {
+    /*width: 50;
+    height: 80%;*/
+    background: url('../assets/martin-allen.jpg') no-repeat center ;
+    border-radius: 5%;
+    margin-top: -5%;
+  }
+
+  .quote_container.allen{
+    margin-right: 10%;
+    width: 70%;
+    margin-top: 98%;
+  }
+
+  .quote_container.varrenti{
+    margin-top: -65%;
   }
 
 }

@@ -8,10 +8,10 @@ var top_hospitals = function(){
           type: 'horizontalBar',
           data: {
               labels: ['Memorial Sloan-Kettering Cancer Center ($1.2 billion)',
-              'University of Rochester Medical Center & affiliates ($656.5 million)',
+              'University of Rochester Medical Center ($656.5 million)',
               'North Shore University Hospital ($337 million)',
               'New York-Presbyterian Hospital ($200 million)',
-              'Mt. Sinai Hospital ($538 thousand)'] ,
+              'Mt. Sinai Hospital ($53.8 million)'] ,
               datasets: [{
                   // label: '# of Votes',
                   data: [1099317790,
@@ -70,7 +70,6 @@ var top_hospitals = function(){
           ctx.textBaseline = 'bottom';
 
           this.data.datasets.forEach(function (dataset) {
-              console.log(dataset);
               for (var i = 0; i < dataset.data.length; i++) {
                   var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
                       scale_max = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._yScale.maxHeight;
@@ -103,10 +102,10 @@ var top_hospitals_mobile = function(){
     type: 'horizontalBar',
     data: {
         labels: ['Memorial Sloan-Kettering Cancer Center ($1.2 billion)',
-        'University of Rochester Medical Center & affiliates ($656.5 million)',
+        'University of Rochester Medical Center ($656.5 million)',
         'North Shore University Hospital ($337 million)',
         'New York-Presbyterian Hospital ($200 million)',
-        'Mt. Sinai Hospital ($538 thousand)'] ,
+        'Mt. Sinai Hospital ($53.8 million)'] ,
         datasets: [{
             // label: '# of Votes',
             data: [1099317790,
@@ -165,7 +164,6 @@ var top_hospitals_mobile = function(){
     ctx.textBaseline = 'bottom';
 
     this.data.datasets.forEach(function (dataset) {
-        console.log(dataset);
         for (var i = 0; i < dataset.data.length; i++) {
             var model = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._model,
                 scale_max = dataset._meta[Object.keys(dataset._meta)[0]].data[i]._yScale.maxHeight;

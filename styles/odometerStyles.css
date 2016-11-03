@@ -2,12 +2,21 @@
   margin-bottom: 5%;
 }
 
+.odometer_value{
+    margin-top: 10%;
+}
+
+span.odometer_value{
+  font-family: sans-serif;
+}
+
 .odometer_slide{
   text-align: center;
   color: white;
 }
 
 .odometer_and_dollar{
+  font-family: sans-serif;
   font-size: 70px;
   display: inline-block;
   /*position: absolute;*/

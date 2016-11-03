@@ -6,7 +6,7 @@
   margin-top: 40%;
 }
 
-#religion_chart, #hospitals_chart{
+#religion_chart, #hospitals_chart, #religion_chart_ramapo{
   height: 300px;
   width: 90%;
 margin-left: 35%;
@@ -55,5 +55,20 @@ svg text {
     margin: 0 auto;
   }
 
+
+}
+
+@media only screen and (min-device-width : 325px) and (max-device-width : 480px) {
+
+
+  #religion_chart, #hospitals_chart{
+    height: 300px;
+    width: 100%;
+    margin-left: 8%;
+  }
+
+  #idas_chart{
+    margin-left: 5%; 
+  }
 
 }
