@@ -32,8 +32,13 @@
     }
 
     #menu {
-      display: none;
+      /*display: none;*/
     }
+
+    #menu li{
+      margin: .25em;
+    }
+    
     #property_bar{
       /*width: 144%;*/
       height: 82% !important;

@@ -181,29 +181,28 @@
 }
 
 #menu{
-  display: none;
-  width: 99%;
+  /*display: none;*/
+  /*width: 99%;*/
   /*height: 20%;*/
-  position:fixed;
-  z-index: 70;
+  /*position:fixed;
+  z-index: 70;*/
 }
 
 #menu li{
   text-decoration: none;
   display: inline-block;
   margin: 1em;
-  margin-top: .5em;
-  background-color: #fff;
+  /*margin-top: .5em;
+  background-color: #fff;*/
   height: 2em;
   padding: .5em;
   height: 50%;
   border-radius: 10px;
-  font-family: arial;
+  /*font-family: arial;*/
   width: 15%;
-  text-align: center;
-  font-size: 24px;
-  /*margin-left: .3em;*/
-  /*margin-left: 25%;*/
+  /*text-align: center;*/
+  /*font-size: 24px;*/
+
   background: rgba(255, 255, 255, 0.5);
 }
 
@@ -245,6 +244,9 @@
   /*height: 10%*/
 }
 
+.axis path, .axis line{
+  stroke: #793232;
+}
 
 #squares{
   margin-left: 2%;
@@ -300,6 +302,10 @@ svg{
 
 #religion_states_desktop_container{
   width: 70%;
+  margin-left: 10%;
+}
+
+#ramapo_bar{
   margin-left: 10%;
 }
 

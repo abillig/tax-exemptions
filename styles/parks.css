@@ -19,23 +19,35 @@
 }
 
 .slide.sing_sing{
-  background: url('../assets/Sing_Sing09.jpg') no-repeat center / cover;
+  background: url('../assets/sing_sing.jpg') no-repeat center / cover;
   color: white;
 }
 
 .slide.taconic_womens{
-  background: url('../assets/Bedford_Hills_Prison02.jpg') no-repeat center / cover;
+  background: url('../assets/bedford_hills.jpg') no-repeat center / cover;
   /*background: url('../taconic_womens_copyrighted.jpg') no-repeat center / cover;*/
 }
 
 .slide.aqueduct_1{
-  background: url('../assets/Croton-aqueduct-en.png') no-repeat center / cover;
+  background: none;
   /*background: url('../taconic_womens_copyrighted.jpg') no-repeat center / cover;*/
 }
 
 .slide.aqueduct_2{
-  background: url('../assets/Croton-aqueduct-en2.png') no-repeat center / cover;
+  background: none;
   /*background: url('../taconic_womens_copyrighted.jpg') no-repeat center / cover;*/
+}
+
+.aqueduct_desktop{
+  background: url('../assets/Croton_jpg_1.jpg') no-repeat center / cover;
+  height: 60%;
+  width: 30%;
+  zoom: 100%;
+  margin: 0 auto;
+}
+
+.aqueduct_desktop.second{
+  background: url('../assets/Croton_jpg_2.jpg') no-repeat center / cover;
 }
 
 .aqueduct_text{
@@ -43,8 +55,9 @@
   width: 70%;
   padding: 3%;
   margin: 0 auto;
-  border-radius: 2%;
-  margin-top: 110%;
+  margin-top: 3%;
+  border-radius: 1%;
+  /*margin-top: 110%;*/
 }
 
 #new_york_image{
@@ -119,6 +132,26 @@ width: 70%;
 margin-top: -20%;
   margin-left: 15%;
   margin-bottom: -5%;
+}
+
+.slide.aqueduct_1{
+  background: url('../assets/Croton_jpg_1.jpg') no-repeat center / cover;
+  /*background: url('../taconic_womens_copyrighted.jpg') no-repeat center / cover;*/
+}
+
+.slide.aqueduct_2{
+  background: url('../assets/Croton_jpg_2.jpg') no-repeat center / cover;
+  /*background: url('../taconic_womens_copyrighted.jpg') no-repeat center / cover;*/
+}
+
+.aqueduct_desktop, .aqueduct_desktop.second{
+  background: none;
+  height: 100%;
+  width: 100%;
+}
+
+.aqueduct_text{
+  margin-bottom: 50%;
 }
 
 }

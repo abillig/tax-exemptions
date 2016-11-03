@@ -15,6 +15,8 @@
     <link rel="stylesheet" type="text/css" href="styles/ipad.css" />
     <link rel="stylesheet" type="text/css" href="styles/arrow.css" />
     <link rel="stylesheet" type="text/css" href="styles/hospitals.css" />
+    <link rel="stylesheet" type="text/css" href="styles/quote_slides.css" />
+    <link rel="stylesheet" type="text/css" href="styles/header.css" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.3/jquery.fullPage.css" rel="stylesheet">
@@ -30,10 +32,40 @@
     <script src="scripts/d3_idas_bar_chart.js"></script>
     <script src="scripts/d3_pie_generic.js"></script>
     <script src="scripts/image_swapper.js"></script>
+    <script src="scripts/menu_js.js"></script>
     <script src="scripts/top_hospitals_chart.js"></script>
-    <script src="vendors/parallaxify.min.js"></script>
+    <script src="scripts/shifting_bar.js"></script>
+    <!-- <script src="vendors/parallaxify.min.js"></script> -->
     <!-- <script src="./scripts/fullPageScript.js"></script> -->
+    <meta property="og:image" content="http://data.lohud.com/AAB/tax_exempt_test/social_chart_horizontal3.png" />
+        <meta property="og:title" content="Who Pays No New York Property Taxes?" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Two thirds of New York's land is untaxed. The USA Today Network investigated who receives these exemptions, and what they do with the money they save.">
 
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="1" />
+    <meta name="twitter:title" content="Who Pays No New York Property Taxes?" />
+    <meta name="twitter:description" content="Two thirds of New York's land is untaxed. The USA Today Network investigated who receives these exemptions, and what they do with the money they save." />
+    <meta name="twitter:image" content="http://data.lohud.com/AAB/tax_exempt_test/social_chart_horizontal3.png" />
+        <!-- <div class="row">
+          <div class="large-12 columns head-wrap">
+            <h2 style="margin-bottom:0.25rem; font-size:2em;">Your guide to Halloween in lohud</h2>
+            <div style="padding: 5px 20px 0;">
+              <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://data.lohud.com/features/halloween15" data-text="Your guide to Halloween in the Lower Hudson Valley" data-via="lohud" >Tweet</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              <div class="fb-like" data-href="http://data.lohud.com/features/halloween15" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+            </div>
+          </div>
+        </div> -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+        </script>
     <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-minimal.css" />
     <script src="http://github.hubspot.com/odometer/odometer.js"></script>
 
@@ -51,6 +83,16 @@
   </head>
 <script>
 
+
+
+// toggle menu
+// var toggle_menu = function(){
+//   document.querySelector('.header-top a').onclick = function() {
+//     $(this).parent().toggleClass('open-menu');
+//   };
+//
+// }
+// toggle_menu()
 </script>
 <script>
 $(document).ready(function() {
@@ -115,9 +157,29 @@ $(document).ready(function() {
           //events
           onLeave: function(index, nextIndex, direction){},
           afterLoad: function(anchorLink, index){
+
+            var $header_top = $('.header-top');
+            var $nav = $('nav');
+
+            var toggle_menu = function(){
+              // var hamburger = document.querySelector('.header-top a')
+              $('.header-top a').on("click", function() {
+                $(this).parent().toggleClass('open-menu');
+              });
+            }
+
+
+            $header_top.css('background', 'rgba(0, 47, 77, .3)');
+            $nav.css('background', 'rgba(0, 47, 77, .25)');
+            if (index == 5) {
+                $('#fp-nav').hide();
+              }
+
+
             $('.fp-controlArrow.fp-next').show()
-            console.log('anchorLink ===' + anchorLink + '&& index ===' + index)
+            // console.log('anchorLink ===' + anchorLink + '&& index ===' + index)
             if(anchorLink === 'introduction' && index === 1){
+              toggle_menu()
               $('.intro_fill').animate({ height: '100%' }, {
                 duration: 500,
                 });
@@ -135,12 +197,21 @@ $(document).ready(function() {
           afterResize: function(){},
           afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
 
-
-            console.log('anchorLink ===' + anchorLink + '&& index ===' + index + ' && slideIndex ===' + slideIndex)
+            // toggle_menu()
+            // console.log('toggle_menu')
+            // console.log('anchorLink ===' + anchorLink + '&& index ===' + index + ' && slideIndex ===' + slideIndex)
 
             if(anchorLink ==='religion' && slideIndex ===1) {
               states_religion_mobile()
               states_religion_desktop()
+            }
+
+            if(anchorLink ==='religion' && slideIndex ===4) {
+              shifting_bar()
+            }
+
+            if(anchorLink ==='introduction2') {
+              toggle_menu()
             }
 
             if(anchorLink ==='hospitals' && slideIndex ===5) {
@@ -168,10 +239,10 @@ $(document).ready(function() {
             }
 
 
-            if(anchorLink ==="universities" && slideIndex ===5){
+            if(anchorLink ==="universities" && slideIndex ===9){
               pieChart("brockfort_budget_graph", [100, 0], {display: false}, ["#2779aa",
               "#a74225"])
-            } else if (anchorLink ==="universities" && slideIndex ===6){
+            } else if (anchorLink ==="universities" && slideIndex ===10){
               pieChart("brockfort_police_graph", [26, 74], ["Public Safety"], ["#a74225", "#2779aa"])
             }
 
@@ -179,7 +250,7 @@ $(document).ready(function() {
               pieChart("exemption_pie", [99, 1], {display: false}, ["#2779aa", "#a74225"])
             }
 
-            if(anchorLink == "universities" && slideIndex == 2){
+            if(anchorLink == "universities" && slideIndex == 6){
               pieChart("brockfort_graph", [65, 35], ["SUNY", "Non-SUNY"], ["#a74225", "#2779aa"])
             }
 
@@ -187,6 +258,13 @@ $(document).ready(function() {
               // $('.fp-controlArrow.fp-prev').css("zoom", "50%")
               // $('.fp-controlArrow.fp-next').css("zoom", "50%")
               religion_chart()
+              // $('explainer_text small left').css('margin-bottom', '0px')
+            }
+
+            if(anchorLink == "religion" && slideIndex == 3){
+              // $('.fp-controlArrow.fp-prev').css("zoom", "50%")
+              // $('.fp-controlArrow.fp-next').css("zoom", "50%")
+              // religion_chart_ramapo()
               // $('explainer_text small left').css('margin-bottom', '0px')
             }
 
@@ -227,27 +305,27 @@ $(document).ready(function() {
             //   top_hospitals()
             // }
 
-            if (anchorLink === 'religion' && slideIndex === 5){
-            var el = document.querySelector('#first_dollar_figure');
-              od = new Odometer({
-                el: el,
-                value: 10000,
-              });
-              od.update(83000)
-              // or
-              el.innerHTML = 83000
-              }
-
-            if (anchorLink === 'religion' && slideIndex === 7){
-            var el = document.querySelector('#second_dollar_figure');
-              od = new Odometer({
-                el: el,
-                value: 99000,
-              });
-              od.update(43000)
-              // or
-              el.innerHTML = 43000
-              }
+            // if (anchorLink === 'religion' && slideIndex === 5){
+            // var el = document.querySelector('#first_dollar_figure');
+            //   od = new Odometer({
+            //     el: el,
+            //     value: 10000,
+            //   });
+            //   od.update(83000)
+            //   // or
+            //   el.innerHTML = 83000
+            //   }
+            //
+            // if (anchorLink === 'religion' && slideIndex === 7){
+            // var el = document.querySelector('#second_dollar_figure');
+            //   od = new Odometer({
+            //     el: el,
+            //     value: 99000,
+            //   });
+            //   od.update(43000)
+            //   // or
+            //   el.innerHTML = 43000
+            //   }
 
 
             if (index === 6 && slideIndex === 4){
@@ -256,9 +334,9 @@ $(document).ready(function() {
                 el: el,
                 value: 10000000,
               });
-              od.update(42000000)
+              od.update(41000000)
               // or
-              el.innerHTML = 42000000
+              el.innerHTML = 41000000
               }
 
             if (index === 6 && slideIndex === 6){
@@ -286,11 +364,11 @@ $(document).ready(function() {
 $.fn.fullpage.setAllowScrolling(false);
 
 </script>
-
+    <script src="scripts/menu_js.js"></script>
   <body>
 
 
-      <ul id="menu">
+      <!-- <ul id="menu">
           <li data-menuanchor="firstSection" class="active">
               <a href="#firstSection" title="First Section">First Section</a>
           </li>
@@ -304,7 +382,38 @@ $.fn.fullpage.setAllowScrolling(false);
               <a href="#fourthSection" title="Fourth Section">Fourth Section</a>
           </li>
 
+      </ul> -->
+
+      <header>
+    <div class="header-top clearfix">
+      <!-- <h1 class="l-left"><a href="#firstSection">Your Logo</a></h1> -->
+      <a class="l-right toggle-menu" href="#">
+        <i></i>
+        <i></i>
+        <i></i>
+      </a>
+    </div>
+
+    <nav class="hide">
+      <ul id="menu">
+        <li data-menuanchor="hospitals">
+          <a href="#hospitals" title="hospitals"><img src='assets/hospital_icon.png'height="42" width="42"></a>
+        </li>
+        <li data-menuanchor="parks">
+          <a href="#parks" title="parks"><img src='assets/public_land_icon.png'height="42" width="42"></a>
+        </li>
+        <li data-menuanchor="idas">
+          <a href="#idas" title="idas"><img src='assets/business.png'height="42" width="42"></a>
+        </li>
+        <li data-menuanchor="universities">
+          <a href="#universities" title="universities"><img src='assets/university_icon.png'height="42" width="42"></a>
+        </li>
+        <li data-menuanchor="religion">
+          <a href="#religion" title="religion"><img src='assets/prayer_not_free.png'height="42" width="42"></a>
+        </li>
       </ul>
+    </nav>
+  </header>
 
     <div id="fullpage">
 
@@ -363,7 +472,7 @@ $.fn.fullpage.setAllowScrolling(false);
         <div id='split_screen_2'>
             <div class="second_division"></div>
             <div class="intro_content">
-              <h2 class="section_header centered upper">The other third, $856 billion, is tax exempt.</h2>
+              <h2 class="section_header centered upper">The other third, $866 billion, is tax exempt.</h2>
             </div>
         </div>
         <svg class="arrows">
@@ -371,14 +480,14 @@ $.fn.fullpage.setAllowScrolling(false);
 					<path class="a2" d="M0 20 L30 52 L60 20"></path>
 					<path class="a3" d="M0 40 L30 72 L60 40"></path>
 				</svg>
-        <!-- <h2 class="section_header" id="intro3_header">The other third, $856 billion, is tax exempt.</h2>
+        <!-- <h2 class="section_header" id="intro3_header">The other third, $866 billion, is tax exempt.</h2>
         <div class="property_bar">
           <div id="screen2"></div>
         </div> -->
       </section>
       <section class="section">
 
-        <h2 class="explainer_text">The <em>Journal News</em> investigated where that money goes. <br><br>Swipe down to find out more.</h2>
+        <h2 class="explainer_text">The Journal News/lohud.com investigated where that money goes. <br><br>Swipe down to find out more.</h2>
     </section>
     <section class="section">
       <div class="slide">
@@ -388,14 +497,14 @@ $.fn.fullpage.setAllowScrolling(false);
         </div>
       </div>
       <div class="slide">
-        <h2 class="explainer_text">Many nonprofit hospitals in New York receive property tax exemptions.</h2>
+        <h2 class="explainer_text">More than 200 hospitals and health systems in New York receive property tax exemptions.</h2>
       </div>
       <div class="slide">
         <h2 class = "explainer_text small left">Hospitals' exempt parcels have risen in value from $13.1 billion to $22.7 billion over the past 16 years.</h2>
           <svg id="hospitals_chart">
       </div>
       <div class="slide">
-        <h2 class="explainer_text">At the same time, these hospitals sheltered $2.6 billion in overseas tax havens.</h2>
+        <h2 class="explainer_text">In 2014 alone, some of these hospitals had $2.6 billion invested in overseas tax havens.</h2>
       </div>
       <div class="slide">
         <h3 class="explainer_text">Including <div class="explainer_text red" id="country_text">Panama</div></h3>
@@ -412,12 +521,12 @@ $.fn.fullpage.setAllowScrolling(false);
       </div>
       </div>
       <div class="slide">
-        <h3 class="explainer_text">Private investments and tax avoidance could threaten the hospitals' nonprofit status.<br><br>Similar behavior by hospitals in New Jersey has led their legislature to consider removing hospitals' exemptions.</h3>
+        <h3 class="explainer_text">Hospitals in New York must be nonprofit.<br><br>Foreign investments and regulatory avoidance could threaten their tax-exempt status.<br><br>Similar behavior by hospitals in New Jersey has prompted lawsuits seeking to remove, or reduce, their tax exemptions.</h3>
       </div>
       <div class="slide desktop_quote_slide allen">
         <div class="quote blackman">
-          <h3 style="color: white">“If something is getting an exemption, the taxpayers are subsidizing that entity and it has to bear the burden of showing why the exemption is necessary...If you can follow the money into someone’s pocket, that in and of itself may be sufficient to take a (tax exemption) away.”
-        <br><br>Martin Allen, attorney for communities challenging tax exemptions.</h3>
+          <h3 style="color: white">“If something is getting an exemption, the taxpayers are subsidizing that entity and it has to bear the burden of showing why the exemption is necessary... If you can follow the money into someone’s pocket, that in and of itself may be sufficient to take a (tax exemption) away.”
+        <br><br>Martin Allen, attorney for New Jersey communities challenging tax exemptions.</h3>
         </div>
       </div>
       <!-- <div class="slide">
@@ -446,34 +555,34 @@ $.fn.fullpage.setAllowScrolling(false);
       </div>
       <div class="slide park_slide_bw">
         <img src="assets/new_york_counties.png" class="header image_header small" id="new_york_counties"></img>
-        <h1 class="header image_header counties">The state government pays its counties taxes on the land that they house.</h1>
+        <h1 class="header image_header counties">The state pays property taxes to counties, schools, and local governments on most of its land.</h1>
 
       </div>
       <div class="slide public_land_section">
-        <h1 class="header explainer_text">But not all counties.</h1>
+        <h1 class="header explainer_text">But not in all counties.</h1>
       </div>
       <div class="slide public_land_section">
           <div class="header image_header double" id="putnam_rockland">
             <img src="assets/rockland-putnam_county.png" id="putnam_rockland_image"></img>
           </div>
-        <h2 class="explainer_text putnam">Public land in Putnam and Rockland is worth about <span class="red">$1 billion</span>.</h2>
+        <h2 class="explainer_text putnam">There are about 70,000 acres of state land in Putnam and Rockland counties.</h2>
       </div>
       <div class="slide public_land_section">
-        <h2 class="explainer_text">The state pays these counties about</h2>
+        <h2 class="explainer_text">The state pays about</h2>
         <div class="odometer_slide">
           <div class="odometer_and_dollar millions_container third">
             <div class="odometer_and_dollar millions">$</div>
             <div class="odometer_and_dollar millions" id="third_dollar_figure"></div>
           </div>
         </div>
-         <h2 class="explainer_text">in town, county, and school taxes.</h2>
+         <h2 class="explainer_text">in town, county, and school taxes on that land.</h2>
       </div>
       <div class="slide public_land_section">
         <img src="assets/westchester_county.png" class="header image_header" id="westchester_image"></img>
-        <h2 class="explainer_text">Nearby Westchester County has <span class="red">$3.7 billion</span> in public lands, almost 4 times as much as its neighbors.</h2>
+        <h2 class="explainer_text">Westchester County has about 7,000 acres of state land.</h2>
       </div>
       <div class="slide public_land_section">
-        <h2 class="explainer_text">Yet the state only pays Westchester about</h2>
+        <h2 class="explainer_text">Yet the state only pays about</h2>
         <div class="odometer_and_dollar millions_container zero">
           <div class="odometer_and_dollar millions">$</div>
           <div class="odometer_and_dollar millions" id="fourth_dollar_figure"></div>
@@ -487,16 +596,20 @@ $.fn.fullpage.setAllowScrolling(false);
         <h1 class="header image_header">New York pays school taxes to Ossining for the Sing Sing prison.</h1>
       </div>
       <div class="slide taconic_womens">
-        <h1 class="header image_header">But none to Bedford for the Bedford Hills Correctional Facility.</h1>
+        <h1 class="header image_header">But none to Bedford for the Bedford Hills prison.</h1>
       </div>
       <div class="slide aqueduct_1">
+        <div class="aqueduct_desktop">
+        </div>
         <div class="aqueduct_text">
-          <h1 class="header image_header small_text">It pays taxes on the Croton Aqueduct State Park in Ossining.</h1>
+          <h1 class="header image_header small_text">New York pays taxes on the Old Croton Aqueduct State Park in Ossining.</h1>
         </div>
       </div>
       <div class="slide aqueduct_2">
+        <div class="aqueduct_desktop second">
+        </div>
         <div class="aqueduct_text">
-          <h1 class="header image_header small_text">But not the Croton Aqueduct State Park in Greenburgh, Yonkers, and Mount Pleasant.</h1>
+          <h1 class="header image_header small_text">But not the Old Croton Aqueduct State Park in Greenburgh, Yonkers, and Mount Pleasant.</h1>
         </div>
       </div>
       <div class="slide">
@@ -522,7 +635,7 @@ $.fn.fullpage.setAllowScrolling(false);
        </div>
        <div class="slide avalon_slide">
           <!-- <img id="avalon" src="avalon_emporis_cropped.jpg"></img> -->
-          <h1 class="header image_header second">So they received an exemption on their property taxes.</h1>
+          <h1 class="header image_header second">So the owner received an exemption on its property taxes.</h1>
       </div>
       <div class="slide">
          <h2 class="explainer_text">Putting their effective property tax rate at under 1%</h2>
@@ -533,7 +646,7 @@ $.fn.fullpage.setAllowScrolling(false);
        <div class="slide">
          <!-- <div class="header small_header explainers"> -->
           <h2 class="explainer_text">The plan to attract millenials didn't pan out.</h2>
-          <h2 class="explainer_text">But the Avalon's tax rate will stay in place for the next 30 years.</h2>
+          <h2 class="explainer_text">But the Avalons’ 30-year deals mean the tax rate will stay in place as late as the year 2034.</h2>
          <!-- </div> -->
       </div>
         <div class="slide">
@@ -550,10 +663,12 @@ $.fn.fullpage.setAllowScrolling(false);
           <div class="slide">
             <h2 class = "explainer_text">Yet New York's Authorities Budget Office found "little correlation" between these projects and job growth.</h2>
           </div>
-          <div class="slide quote_slide farrar">
-            <div class="quote farrar">
-              <h2>"It's hard to see a relationship [between exemptions and new jobs]. The IDA is a tool that has perhaps outlived its usefulness."</h2>
-              <h5>Michael Farrar<br>Director of the Authorities Budget Office</h5>
+          <div class="slide mobile_quote_slide brodsky">
+            <div class="desktop_quote_slide brodsky">
+              <div class="quote brodsky">
+                <h2>"We have seen a massive transfer of public wealth to private hands and the public has gotten almost nothing back"</h2>
+                <h5>Richard Brodsky<br>Senior Fellow, Demos</h5>
+              </div>
             </div>
           </div>
           <div class="slide">
@@ -592,6 +707,18 @@ $.fn.fullpage.setAllowScrolling(false);
             <img class="icon negative universities" src="assets/university_icon.png"></img>
           </div>
         </div>
+        <div class="slide">
+          <h2 class="explainer_text">Educational institutions are exempt from paying property taxes.</h2>
+        </div>
+        <div class="slide">
+          <h2 class="explainer_text">That includes State University of New York (SUNY) campuses, which comprise more than 9,000 acres valued at over <span class="red">$10 billion.</span></h2>
+        </div>
+        <div class="slide">
+          <h2 class="explainer_text">As for private colleges, about <span class="red">$36.5 billion</span> of property is exempt from paying taxes because it's owned by nonprofit educational organizations.</h2>
+        </div>
+        <div class="slide">
+          <h2 class="explainer_text">In small municipalities, those missing taxes can have a large impact.</h2>
+        </div>
           <div class="slide">
             <h2 class="explainer_text">Brockport is a small village in Monroe County.</h2>
             <img src="brockfort.svg" id="brockport_image"></img>
@@ -620,15 +747,15 @@ $.fn.fullpage.setAllowScrolling(false);
             <canvas id="brockfort_police_graph"></canvas>
           </div>
         </div>
-        <div class="slide quote_slide varrenti">
+        <div class="slide mobile_quote_slide varrenti">
           <div class="quote blackman">
             <h2>Police Chief Dan Varrenti argues that this part of the budget wouldn't be needed if not for the college.</h2>
           </div>
         </div>
         <div class="slide">
-          <h2 class="explainer_text">Yet the college doesn't pay for the force. Brockport residents do.</h2>
+          <h2 class="explainer_text">Yet the college doesn't pay for the force. Brockport property owners do.</h2>
         </div>
-        <div class="slide quote_slide">
+        <div class="slide mobile_quote_slide">
           <div class="desktop_quote_slide blackman">
             <div class="quote blackman">
             <h2>"This has so much to do with our high taxes. If the college were paying into our tax levy, our rate of $11.87 would go down to $4.30"<br> <h3>&nbsp;&nbsp;&nbsp;&nbsp;Margary Blackman<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Brockport mayor</h3> </h2>
@@ -659,7 +786,7 @@ $.fn.fullpage.setAllowScrolling(false);
           </div>
         </div> -->
         <div class="slide">
-          <h1 class="explainer_text small left">New York is one of the least religious states in the country, with just 29% of people attending weekly services.</h1>
+          <h1 class="explainer_text small left">New York is one of the least religious states in the country, with just 29% of people attending weekly worship services.</h1>
             <div id="religion_states_desktop_container">
             <canvas id="religion_states_chart" height="400" width="800"></canvas>
           </div>
@@ -677,11 +804,19 @@ $.fn.fullpage.setAllowScrolling(false);
               <!-- <h1>Religious Organizations</h1> -->
 
             <img class = "header image_header small" src="assets/rockland_county.png"></img>
-            <h2 class="explainer_text">This rise in exemptions has been drastic in Ramapo, which has a booming population of synagogues and Yeshivas.<br><br>
-                <!-- These organizations can apply for religious exemptions on their land.<br><br>
+            <h2 class="explainer_text">This rise in exemptions has been dramatic in Rockland County's Ramapo, which has a booming population of synagogues and yeshivas.<br><br>
+              <!-- <svg id="religion_chart_ramapo"> -->
+                  <!-- These organizations can apply for religious exemptions on their land.<br><br>
                 But even when their applications are rejected, they can keep reapplying.</h2> -->
         </div>
         <div class="slide">
+          <h2 class="explainer_text">Ramapo went from having 150 exempt properties in 1999 to 523 in 2015.</h2>
+          <div id="ramapo_bar"></div>
+        </div>
+        <div class="slide">
+          <h2 class="explainer_text">There are now more clergy residences in Ramapo, population 127 thousand, than anywhere in the state outside of New York City, population 8.6 million.</h2>
+        </div>
+        <!-- <div class="slide">
             <div>
               <h2 class="explainer_text">
                 Ramapo has been flooded with applications for religious exemptions from property taxes.<br><br>
@@ -692,8 +827,6 @@ $.fn.fullpage.setAllowScrolling(false);
           <div class="squares_header" id="first_squares_header"><h1>In 2015, Ramapo rejected 240 religious exemption requests.</h1></div>
           <div class='squares_container'>
             <div id="squares" width="200" height="200" data-parallaxify-range-x="100"></div>
-          <!-- </div> -->
-          <!-- <div id="odometer" class="odometer"></div> -->
             <script>adjustableGrid(0)</script>
         </div>
       </div>
@@ -712,9 +845,6 @@ $.fn.fullpage.setAllowScrolling(false);
             <div class="squares_header" id="second_squares_header"><h1>But after appeals, 180 of these rejections were reversed.</h1><div>
             <div id="squares2" width="200" height="200"></div>
             <script>adjustableGridSecond(99)</script>
-            <!-- <script>setTimeout(function(){
-              odometer.innerHTML = 8300;
-            }, 1000);</script> -->
           </div>
         </div>
         <div class="slide">
@@ -725,7 +855,7 @@ $.fn.fullpage.setAllowScrolling(false);
               <div class="odometer_and_dollar" id="second_dollar_figure"></div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- <div class="slide">
           <h2 class = "explainer_text ida_chart_text religion">Statewide, the value of land granted religious exemptions has risen to nearly $26 billion in 2015.</h2>
             <svg id="religion_chart">

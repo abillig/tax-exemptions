@@ -8,7 +8,7 @@ var top_hospitals = function(){
           type: 'horizontalBar',
           data: {
               labels: ['Memorial Sloan-Kettering Cancer Center ($1.2 billion)',
-              'University of Rochester Medical Center ($656.5 million)',
+              'University of Rochester Medical Center & affiliates ($656.5 million)',
               'North Shore University Hospital ($337 million)',
               'New York-Presbyterian Hospital ($200 million)',
               'Mt. Sinai Hospital ($538 thousand)'] ,
@@ -103,7 +103,7 @@ var top_hospitals_mobile = function(){
     type: 'horizontalBar',
     data: {
         labels: ['Memorial Sloan-Kettering Cancer Center ($1.2 billion)',
-        'University of Rochester Medical Center ($656.5 million)',
+        'University of Rochester Medical Center & affiliates ($656.5 million)',
         'North Shore University Hospital ($337 million)',
         'New York-Presbyterian Hospital ($200 million)',
         'Mt. Sinai Hospital ($538 thousand)'] ,

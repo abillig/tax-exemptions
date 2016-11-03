@@ -1,0 +1,71 @@
+.desktop_quote_slide {
+  width: 50;
+  height: 80%;
+  border-radius: 5%;
+}
+
+.desktop_quote_slide.blackman{
+  background: url('../assets/blackman.jpg') no-repeat center ;
+}
+
+.desktop_quote_slide.brodsky {
+  background: url('../assets/brodsky_desktop.jpg') no-repeat center ;
+
+}
+
+.quote{
+  width: 30%;
+  /*margin: 0 auto;*/
+  font-style: italic;
+  color: white;
+  font-family: arial;
+  background: rgba(0, 0, 0, .5);
+  padding: 5%;
+  border-radius: 5%;
+}
+
+.quote.brodsky{
+  float: right;
+  margin-right: 5%;
+}
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  .desktop_quote_slide.blackman, .desktop_quote_slide.brodsky {
+    background: none;
+  }
+
+  .slide.mobile_quote_slide{
+    background: url('../assets/blackman.jpg') no-repeat center / cover;
+  }
+
+  .slide.mobile_quote_slide.varrenti{
+    background: url('../assets/varrenti.jpg') no-repeat center / cover;
+  }
+
+  .slide.mobile_quote_slide.brodsky{
+    background: url('../assets/brodsky.jpeg') no-repeat center / cover;
+  }
+
+  .quote{
+    width: 70%;
+    margin: 0 auto;
+    font-style: italic;
+    color: white;
+    font-family: arial;
+    background: rgba(0, 0, 0, .5);
+    padding: 5%;
+    border-radius: 5%;
+    font-size: 3.5vw;
+  }
+
+  .quote.blackman{
+    margin-top: 140%;
+  }
+
+  .quote.brodsky{
+    margin-top: 70%;
+    margin-right: 10%; 
+  }
+
+}
